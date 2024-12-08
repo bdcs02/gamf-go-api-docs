@@ -1,0 +1,31 @@
+.date-filter-container {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	gap: 0.5rem;
+}
+
+mat-button-toggle-group {
+	height: 3rem;
+	margin-bottom: 1.325rem;
+}
+
+.mat-mdc-form-field {
+	flex-grow: 1;
+}
+
+@media screen and (max-width: 385px) {
+	.date-filter-container {
+		flex-direction: column;
+		align-items: center;
+		gap: 1rem;
+	}
+}
+
+@media screen and (min-width: 960px) {
+	.mat-mdc-form-field {
+		width: min(100%, 20rem);
+		max-width: unset;
+	}
+}

@@ -1,0 +1,63 @@
+.container {
+	display: block;
+	height: 100%;
+	margin: 1rem;
+}
+
+#inputFields {
+	display: flex;
+	align-content: center;
+}
+
+#inputFields mat-form-field {
+	width: 50%;
+}
+
+#inputFields .file-upload {
+	margin-top: 0.5rem;
+}
+
+#addRow {
+	margin-bottom: 1rem;
+}
+
+.inputField {
+	width: 100%;
+	margin-left: 1rem;
+
+	.file-label {
+		font-size: 1rem;
+		padding: 1rem;
+		margin-left: 2rem;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		width: 50rem;
+	}
+
+	mat-checkbox {
+		float: right;
+	}
+}
+
+input[type='file'] {
+	display: none;
+}
+
+.file-button {
+	border-radius: 0.25rem;
+	height: 2.5rem;
+	padding: 0 1rem;
+	cursor: pointer;
+	background-color: white;
+	border: 0.063rem solid #00000029;
+	box-shadow: 0rem 0.063rem 0rem #0000000d;
+	transition: background-color 200ms;
+}
+
+.file-button:hover {
+	background-color: #f3f4f6;
+}
+
+.file-button:active {
+	background-color: #e5e7eb;
+}

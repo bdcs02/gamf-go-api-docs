@@ -1,0 +1,18 @@
+.dropdown-list {
+	position: relative;
+
+	.dropdown-input {
+		position: sticky;
+		top: 0;
+		z-index: 2;
+		background-color: white;
+	}
+
+	.mat-option.dropdown-input:hover:not(.mat-option-disabled) {
+		background-color: rgb(238, 238, 238);
+	}
+
+	.mat-form-field-underline {
+		display: none;
+	}
+}

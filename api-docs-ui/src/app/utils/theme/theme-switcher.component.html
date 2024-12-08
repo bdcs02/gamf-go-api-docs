@@ -1,0 +1,5 @@
+<button mat-icon-button (click)="themeService.changeTheme()" data-testid="changeThemeButton">
+	<mat-icon *ngIf="themeService.currentTheme.getValue() === 'light'">wb_sunny</mat-icon>
+	<mat-icon *ngIf="themeService.currentTheme.getValue() === 'dark'">brightness_3</mat-icon>
+	<mat-icon *ngIf="themeService.currentTheme.getValue() === 'auto'">brightness_auto</mat-icon>
+</button>

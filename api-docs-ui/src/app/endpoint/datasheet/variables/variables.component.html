@@ -1,0 +1,12 @@
+<div class="center" [formGroup]="formGroup">
+	<div class="global-variables">
+		<button mat-raised-button prevendDoubleClick id="global-variables" color="primary" (click)="openGlobalVariables()">
+			{{ 'common.globalVariables' | translate }}
+		</button>
+	</div>
+	<div>
+		<mat-checkbox class="variable-checkbox" formControlName="enabled">{{ 'keyValueEditor.variable.checkbox' | translate }}</mat-checkbox>
+		<simple-table [config]="config" [dataSource]="dataSource" [tableName]="'common.globalVariables' | translate "></simple-table>
+		<key-value-editor [keyIsCopiable]="true" [formGroup]="formGroup" formArrayName="variables" editorType="variable"></key-value-editor>
+	</div>
+</div>

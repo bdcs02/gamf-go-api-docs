@@ -1,0 +1,52 @@
+@if (keyValuePairs()) {
+<div class="center">
+	<button type="button" mat-raised-button id="addRow" color="primary" (click)="addRow()">
+		{{ 'keyValueEditor.' + editorType + '.new' | translate }}
+	</button>
+
+	<div [formGroup]="formGroup">
+		<div [formArrayName]="formArrayName">
+			<div>
+				@for (keyPairForm of keyValuePairs()?.controls; track keyPairForm; let i = $index) {
+				<div id="inputFields" [formGroupName]="i">
+					<mat-form-field appearance="outline" class="inputField">
+						<mat-label>{{ 'keyValueEditor.' + editorType + '.key' | translate }}</mat-label>
+						<input matInput formControlName="key" id="key-{{ i }}" />
+						@if (keyIsCopiable) {
+						<button
+							mat-icon-button
+							matSuffix
+							preventDoubleClick
+							id="copyKey"
+							(click)="copyKey(keyPairForm.value.key)"
+							[matTooltip]="'common.copyToClipBoard' | translate"
+							[matTooltipShowDelay]="500"
+							[disabled]="!keyPairForm.valid"
+						>
+							<mat-icon>content_copy</mat-icon>
+						</button>
+						}
+					</mat-form-field>
+
+					<mat-form-field appearance="outline" class="inputField">
+						<mat-label>{{ 'keyValueEditor.' + editorType + '.value' | translate }}</mat-label>
+						<input matInput formControlName="value" id="value-{{ i }}" />
+					</mat-form-field>
+
+					<button
+						mat-icon-button
+						preventDoubleClick
+						id="delete"
+						(click)="deleteRow(i)"
+						[matTooltip]="'common.delete' | translate"
+						[matTooltipShowDelay]="500"
+					>
+						<mat-icon>delete</mat-icon>
+					</button>
+				</div>
+				}
+			</div>
+		</div>
+	</div>
+</div>
+}

@@ -1,0 +1,17 @@
+<mat-form-field [appearance]="appearance">
+	<mat-label>{{ label }}</mat-label>
+	<mat-select [id]="controlName + '-input'" #select panelClass="dropdown-list" [formControl]="formControl" disableOptionCentering multiple>
+		<mat-option class="mat-elevation-z1 dropdown-input" *ngIf="searchable">
+			<mat-form-field>
+				<input matInput id="dropdown-list-search-input" clickStopPropagation [formControl]="inputControl" #searchSelectInput />
+			</mat-form-field>
+		</mat-option>
+		<mat-option *ngFor="let item of filteredElements | async" [value]="valueKey ? item[valueKey] : item">
+			<span>{{ displayKey ? item[displayKey] : displayFormat(item) }}</span>
+		</mat-option>
+	</mat-select>
+	<mat-error>
+		<form-errors [control]="formControl"></form-errors>
+		<ng-content select="[errors]"></ng-content>
+	</mat-error>
+</mat-form-field>

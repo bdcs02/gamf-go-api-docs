@@ -1,0 +1,102 @@
+$active-nav-item-light: #ececec;
+$active-nav-item-after: #358438;
+
+.list {
+	width: 500px;
+	max-width: 100%;
+	min-height: fit-content;
+	display: block;
+	border-radius: 0.5rem;
+	overflow: hidden;
+}
+
+.modul {
+	display: flex;
+	align-items: center;
+	width: 100%;
+}
+
+.modul-name {
+	display: flex;
+	justify-content: start;
+	align-items: center;
+	align-content: center;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	width: 75%;
+}
+
+.action {
+	padding-top: 0.4rem;
+}
+
+.cdk-drag-preview {
+	border: none;
+	box-sizing: border-box;
+	border-radius: 0.5rem;
+	box-shadow:
+		0 5px 5px -3px rgba(0, 0, 0, 0.2),
+		0 8px 10px 1px rgba(0, 0, 0, 0.14),
+		0 3px 14px 2px rgba(0, 0, 0, 0.12);
+}
+
+.cdk-drag-placeholder {
+	opacity: 0;
+}
+
+.cdk-drag-animating {
+	transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.list.cdk-drop-list-dragging .box:not(.cdk-drag-placeholder) {
+	transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.sidenav {
+	width: 20rem;
+	padding: 0.5rem;
+}
+
+mat-checkbox {
+	--mdc-checkbox-selected-checkmark-color: white !important;
+}
+
+.add {
+	padding: 1rem;
+}
+
+button {
+	background: none;
+	border: none;
+}
+
+.active-nav-item::after {
+	content: '';
+	position: absolute;
+	width: 5px;
+	right: 0;
+	height: 100%;
+	z-index: 5;
+	background-color: $active-nav-item-after;
+}
+
+mat-list-item {
+	padding: 0;
+}
+
+.active-nav-item {
+	background-color: $active-nav-item-light;
+}
+
+.element {
+	width: 15rem;
+	margin-right: 1rem;
+}
+
+.group {
+	display: flex;
+	height: fit-content;
+	align-items: center;
+	justify-content: space-between;
+	width: 100%;
+}

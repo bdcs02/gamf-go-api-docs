@@ -1,0 +1,25 @@
+<form class="inputs">
+	<mat-form-field appearance="outline">
+		<mat-label>{{ 'table.selectSort' | translate }}</mat-label>
+		<mat-select id="sort-select" [(value)]="selected" (selectionChange)="selectionChange()" [disabled]="loading">
+			<mat-option *ngFor="let column of sortableColumns" [value]="column">{{ column.translateKey | translate }}</mat-option>
+		</mat-select>
+	</mat-form-field>
+
+	<mat-icon
+		class="direction-icon accent-text-color"
+		*ngIf="direction === directions.asc && selected"
+		(click)="toggleDirection()"
+		matTooltip="{{ 'sort.asc' | translate }}"
+	>
+		arrow_downward
+	</mat-icon>
+	<mat-icon
+		class="direction-icon accent-text-color"
+		*ngIf="direction === directions.desc && selected"
+		(click)="toggleDirection()"
+		matTooltip="{{ 'sort.desc' | translate }}"
+	>
+		arrow_upward
+	</mat-icon>
+</form>

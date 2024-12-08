@@ -1,0 +1,57 @@
+<div class="container">
+
+	@if(dataStructures.length > 0)
+	{
+		<div class="group">
+			<h4>{{ 'locust.modul.dataStructure.title' | translate }}</h4>
+		</div>
+		<div class="group">
+			<mat-form-field appearance="outline" class="inputField element">
+				<mat-label>{{ 'locust.name' | translate }}</mat-label>
+				<input #name matInput id="name" />
+			</mat-form-field>
+
+			<dropdown-list
+				class="element"
+				[searchable]="true"
+				#type
+				[items]="dataStructures"
+				[label]="'locust.type' | translate"
+				[displayKey]="'type'"
+				[valueKey]="'id'"
+			></dropdown-list>
+
+			<button prevendDoubleClick class="add" (click)="addData(name.value, type.matSelect.value)">
+				<mat-icon>add</mat-icon>
+			</button>
+		</div>
+	}
+
+	@if(formArray)
+	{
+		<mat-accordion cdkDropList (cdkDropListDropped)="dropData($event)">
+			@for (struct of formArray.controls; track struct; let structId = $index)
+			{
+				<mat-expansion-panel cdkDrag hideToggle>
+					<mat-expansion-panel-header>
+						<mat-panel-title class="data">
+							<div class="title-wrapper">
+								<div class="path-wrapper">{{ struct.value.name + " (" + struct.value.type + ")" }}</div>
+							</div>
+						</mat-panel-title>
+						@if(struct.value.deletable)
+						{
+							<button prevendDoubleClick id="delete" (click)="deleteData(structId)">
+								<mat-icon>delete</mat-icon>
+							</button>
+						}
+					</mat-expansion-panel-header>
+					@for(field of struct.controls.data.controls; track field; let fieldId = $index)
+					{
+						<request-type [structs]="innerTypes" [dictionaries]="dictionaries" [customTypes]="customTypes" [typeForm]="field" [fieldId]="fieldId"></request-type>
+					}
+				</mat-expansion-panel>
+			}
+		</mat-accordion>
+	}
+</div>

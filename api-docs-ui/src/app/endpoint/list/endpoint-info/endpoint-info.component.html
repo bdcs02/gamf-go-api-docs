@@ -1,0 +1,81 @@
+<div *ngIf="endpoint">
+	<button mat-raised-button color="primary" id="details" *ngIf="displayDetailsButton" (click)="openEndpoint(endpoint)">
+		{{ 'endpoint.datasheet.details' | translate }}
+	</button>
+	<h2>{{ 'endpoint.datasheet.info' | translate }}</h2>
+	<div>
+		<h3>Leírás</h3>
+		<p>{{ endpoint.description }}</p>
+		<h3>Szükséges jogosultság</h3>
+		<p>{{ endpoint.permission ? endpoint.permission : 'Nincs' }}</p>
+		<h3>{{ 'endpoint.datasheet.structure' | translate }}</h3>
+		<div class="mapping-holder">
+			<div class="mapping">
+				<h4>{{ 'endpoint.request' | translate }}</h4>
+				@if (endpoint.requestMapping) {
+					<struct-mapper [content]="endpoint.requestMapping"></struct-mapper>
+				} @else {
+					<div class="mapping">{{ 'endpoint.datasheet.noRequestStructure' | translate }}</div>
+				}
+			</div>
+
+			<div class="mapping">
+				<h4>{{ 'endpoint.response' | translate }}</h4>
+				@if (endpoint.responseMapping) {
+					<struct-mapper [content]="endpoint.responseMapping"></struct-mapper>
+				} @else {
+					<div class="mapping">{{ 'endpoint.datasheet.noResponseStructure' | translate }}</div>
+				}
+			</div>
+		</div>
+	</div>
+	<h2>{{ 'endpoint.datasheet.examples' | translate }}</h2>
+	<div class="example-holder">
+		<div class="example">
+			<h3>{{ 'endpoint.request' | translate }}</h3>
+			<p *ngIf="!endpoint.requestData">Null</p>
+			<div *ngIf="endpoint.requestData">
+				@switch (endpoint.contentType) {
+					@case (contentTypes.JSON) {
+						<monaco-editor [jsonData]="endpoint.requestData" [language]="'vars'" formControllName="bodyString"></monaco-editor>
+					}
+					@case (contentTypes.TEXT) {
+						<app-text-viewer [text]="endpoint.requestData"></app-text-viewer>
+					}
+					@case (contentTypes.BYTE) {
+						<app-byte-array-viewer [byteContent]="endpoint.requestData"></app-byte-array-viewer>
+					}
+					@case (contentTypes.XML) {
+						<app-xml-viewer [xmlContent]="endpoint.responseData"></app-xml-viewer>
+					}
+					@default {
+						<p>{{ 'common.invalidContentType' | translate }}</p>
+					}
+				}
+			</div>
+		</div>
+		<div class="example">
+			<h3>{{ 'endpoint.response' | translate }}</h3>
+			<p *ngIf="!endpoint.responseData">Null</p>
+			<div *ngIf="endpoint.responseData">
+				@switch (endpoint.contentType) {
+					@case (contentTypes.JSON) {
+						<monaco-editor [jsonData]="endpoint.responseData" [language]="'vars'" formControllName="bodyString"></monaco-editor>
+					}
+					@case (contentTypes.TEXT) {
+						<app-text-viewer [text]="endpoint.responseData"></app-text-viewer>
+					}
+					@case (contentTypes.BYTE) {
+						<app-byte-array-viewer [byteContent]="endpoint.responseData"></app-byte-array-viewer>
+					}
+					@case (contentTypes.XML) {
+						<app-xml-viewer [xmlContent]="endpoint.responseData"></app-xml-viewer>
+					}
+					@default {
+						<p>{{ 'common.invalidContentType' | translate }}</p>
+					}
+				}
+			</div>
+		</div>
+	</div>
+</div>

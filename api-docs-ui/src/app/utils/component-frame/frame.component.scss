@@ -1,0 +1,60 @@
+:host {
+	display: flex;
+	justify-content: center;
+	width: 100%;
+	--frame-container-width: 120em;
+}
+
+.frame-container {
+	display: grid;
+	padding: 1rem max(0.8rem, 2%);
+	width: min(100%, var(--frame-container-width));
+	gap: 1em;
+}
+
+.header {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.header-title {
+	font-size: clamp(20px, 2vw, 24px);
+	padding-right: 1rem;
+	height: 45px;
+	display: flex;
+	align-items: center;
+	gap: 0.25rem;
+}
+
+.header-buttons {
+	display: flex;
+	gap: 1rem;
+	align-items: center;
+}
+
+.footer-buttons {
+	display: flex;
+	gap: 1rem;
+	justify-content: flex-end;
+	align-items: center;
+}
+
+.footer-buttons:not(:has(> *)) {
+	display: none;
+}
+
+.display-none {
+	display: none;
+}
+
+.back-button:hover {
+	color: white !important;
+}
+
+@media screen and (min-width: 900px) {
+	.frame-container {
+		padding: 1rem max(2px, 1%);
+	}
+}

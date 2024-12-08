@@ -1,0 +1,24 @@
+mat-form-field {
+	width: 100%;
+}
+
+mat-form-field .mat-icon.error {
+	color: #f44336;
+}
+
+mat-form-field.mat-form-field-disabled > .mat-icon {
+	color: var(--mat-select-disabled-trigger-text-color);
+}
+
+mat-form-field > .mat-icon {
+	margin-left: 0.2rem;
+	color: var(--mat-select-enabled-trigger-text-color);
+}
+
+.mat-form-field-flex {
+	padding-top: 0 !important;
+}
+
+.pointer {
+	cursor: pointer;
+}

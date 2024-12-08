@@ -1,0 +1,15 @@
+<div class="center">
+	@if (formGroup) {
+		<form [formGroup]="this.formGroup">
+			<key-value-editor [keyIsCopiable]="true" [formGroup]="this.formGroup" formArrayName="variables" editorType="variable"></key-value-editor>
+		</form>
+		<div mat-dialog-actions align="end" class="dialog-action">
+			<button mat-button color="primary" [mat-dialog-close]="false">
+				{{ 'common.cancel' | translate }}
+			</button>
+			<button mat-button color="primary" [mat-dialog-close]="true" [disabled]="!this.formGroup.valid" (click)="onSave()">
+				{{ 'common.save' | translate }}
+			</button>
+		</div>
+	}
+</div>

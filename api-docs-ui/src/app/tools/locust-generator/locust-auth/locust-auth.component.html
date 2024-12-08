@@ -1,0 +1,54 @@
+<div class="container">
+	<div class="group">
+		<mat-form-field appearance="outline" class="inputField element">
+			<mat-label>{{ 'locust.name' | translate }}</mat-label>
+			<input #name matInput id="name" />
+		</mat-form-field>
+
+		<dropdown-list
+		class="element"
+		id="authTypes"
+		#type
+		[searchable]="true"
+		[items]="authTypes"
+		[label]="'locust.auth.select' | translate"
+		></dropdown-list>
+
+		<button prevendDoubleClick class="add" (click)="addAuth(name.value, type.matSelect.value)">
+			<mat-icon>add</mat-icon>
+		</button>
+	</div>
+
+	@if(formArray)
+	{
+		<mat-accordion cdkDropList (cdkDropListDropped)="dropAuth($event)">
+			@for (auth of formArray.controls; track auth; let id = $index)
+			{
+				<mat-expansion-panel cdkDrag hideToggle>
+					<mat-expansion-panel-header>
+						<mat-panel-title class="auth">
+							<div class="title-wrapper">
+								<div class="path-wrapper">{{ auth.controls.name.value + " (" + auth.controls.type.value + ")" }}</div>
+							</div>
+							<button prevendDoubleClick id="delete" (click)="deleteAuth(id)">
+								<mat-icon>delete</mat-icon>
+							</button>
+						</mat-panel-title>
+					</mat-expansion-panel-header>
+					@switch (auth.controls.type.value) {
+						@case (authType.OAuth) {
+							<oath-expansion [formGroup]="auth.controls.oAuth"></oath-expansion>
+						}
+						@case (authType.Bearer) {
+							<bearer-token-expansion [formGroup]="auth.controls.bearerToken"></bearer-token-expansion>
+						}
+
+						@case (authType.ApiKey) {
+							<api-key-expansion [formGroup]="auth.controls.apiKey"></api-key-expansion>
+						}
+					}
+				</mat-expansion-panel>
+			}
+		</mat-accordion>
+	}
+</div>

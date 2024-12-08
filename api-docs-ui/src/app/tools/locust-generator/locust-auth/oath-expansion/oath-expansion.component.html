@@ -1,0 +1,30 @@
+<div [formGroup]="formGroup">
+	<mat-form-field appearance="outline" class="inputField wide">
+		<mat-label>{{ 'locust.url' | translate }}</mat-label>
+		<input matInput formControlName="url" id="url" />
+	</mat-form-field>
+	<div class="group">
+		<mat-form-field appearance="outline" class="inputField small">
+			<mat-label>{{ 'locust.auth.oath.clientID' | translate }}</mat-label>
+			<input matInput formControlName="clientID" id="clientID" />
+		</mat-form-field>
+		<mat-form-field appearance="outline" class="inputField small">
+			<mat-label>{{ 'locust.auth.oath.responseType' | translate }}</mat-label>
+			<input matInput formControlName="responseType" id="responseType" />
+		</mat-form-field>
+	</div>
+	<div class="group">
+		<mat-form-field appearance="outline" class="inputField small">
+			<mat-label>{{ 'locust.auth.oath.grantType' | translate }}</mat-label>
+			<input matInput formControlName="grantType" id="grantType" />
+		</mat-form-field>
+		<mat-form-field appearance="outline" class="inputField small">
+			<mat-label>{{ 'locust.auth.oath.username' | translate }}</mat-label>
+			<input matInput formControlName="username" id="username" />
+		</mat-form-field>
+	</div>
+	<mat-form-field appearance="outline" class="inputField small">
+		<mat-label>{{ 'locust.auth.oath.password' | translate }}</mat-label>
+		<input matInput formControlName="password" id="rpassword" />
+	</mat-form-field>
+</div>

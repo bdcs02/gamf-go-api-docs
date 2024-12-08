@@ -1,0 +1,16 @@
+<div class="dialog">
+	<div mat-dialog-title class="dialog-header">
+		<span class="dialog-title">{{ data.title }}</span>
+	</div>
+	<div mat-dialog-content class="dialog-description">
+		{{ data.description }}
+	</div>
+	<div mat-dialog-actions class="dialog-action">
+		<button mat-button color="primary" id="{{ data.componentName + '-dialog-cancel' }}" [mat-dialog-close]="false">
+			{{ 'common.cancel' | translate }}
+		</button>
+		<button mat-button color="primary" id="{{ data.componentName + '-dialog-confirm' }}" [mat-dialog-close]="true">
+			{{ 'common.confirm' | translate }}
+		</button>
+	</div>
+</div>

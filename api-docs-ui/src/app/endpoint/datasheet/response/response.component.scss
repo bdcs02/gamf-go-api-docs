@@ -1,0 +1,53 @@
+.example-holder {
+	display: flex;
+	width: 100%;
+	justify-content: space-between;
+}
+
+.example {
+	width: 50%;
+}
+
+.tab {
+	height: 100%;
+}
+
+.card {
+	margin-bottom: 1rem;
+}
+
+:host ::ng-deep .mat-mdc-tab-body-content {
+	height: 75vh;
+}
+
+.mat-elevation-3 ::ng-deep {
+	padding: 0.625rem;
+}
+
+#downloadResponse {
+	background-color: white;
+	border: 0rem;
+	cursor: pointer;
+}
+
+.response-body-header {
+	display: flex;
+	justify-content: space-between;
+}
+
+table {
+	box-shadow: none;
+}
+
+.mat-mdc-header-cell, .mat-mdc-cell {
+	border-bottom: none;
+}
+
+.mat-mdc-header-cell {
+	color: gray;
+	font-size: small;
+}
+
+.mat-mdc-cell {
+	font-size: medium;
+}

@@ -1,0 +1,8 @@
+<mat-chip [ngStyle]="{ 'background-color': backgroundColor }" class="method-chip">
+	@if(text !== "") {
+		<p>{{ text }}</p>
+	}
+	@else {
+		<p>{{ 'common.other' | translate }}</p>
+	}
+</mat-chip>

@@ -1,0 +1,13 @@
+<ng-container *ngFor="let item of items">
+	<ng-container *ngIf="!item.menu">
+		<button mat-button [id]="item.id" (click)="navigate(item.route)">
+			{{ item.translateKey | translate }}
+		</button>
+	</ng-container>
+	<ng-container *ngIf="item.menu">
+		<button mat-button [id]="item.id" (click)="navigate(item.route)" [matMenuTriggerFor]="menu.childMenu" #menuTrigger="matMenuTrigger">
+			{{ item.translateKey | translate }}
+		</button>
+		<top-menu-item #menu [items]="item.children || []"></top-menu-item>
+	</ng-container>
+</ng-container>

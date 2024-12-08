@@ -1,0 +1,18 @@
+<div [formGroup]="formGroup">
+	<dropdown-list
+		[label]="'keyValueEditor.formData.placement' | translate"
+		#requestBodyTypeList
+		formControlName="placement"
+		[items]="authorizationPlace"
+	></dropdown-list>
+	<div class="key-value-container">
+		<mat-form-field appearance="outline">
+			<mat-label>{{ 'keyValueEditor.formData.key' | translate }}</mat-label>
+			<input matInput formControlName="key" placeholder="{{ 'keyValueEditor.formData.key' | translate }}" />
+		</mat-form-field>
+		<mat-form-field appearance="outline">
+			<mat-label>{{ 'keyValueEditor.formData.value' | translate }}</mat-label>
+			<input matInput formControlName="value" placeholder="{{ 'keyValueEditor.formData.value' | translate }}" />
+		</mat-form-field>
+	</div>
+</div>

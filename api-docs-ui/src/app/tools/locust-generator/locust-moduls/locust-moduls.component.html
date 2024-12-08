@@ -1,0 +1,48 @@
+<mat-sidenav-container autosize class="container">
+	<mat-sidenav mode="side" opened="true" class="sidenav">
+		<div class="group">
+			{{'locust.modul.moduls' | translate}}
+			<button prevendDoubleClick class="add" id="add-modul" (click)="addModul()">
+				<mat-icon>add</mat-icon>
+			</button>
+		</div>
+		<mat-checkbox
+		class="example-margin"
+		[checked]="task().enabled"
+		[indeterminate]="partiallyComplete()"
+		(change)="update($event.checked)"
+		>
+		</mat-checkbox>
+		<div cdkDropList class="list" (cdkDropListDropped)="dropModul($event)">
+			<mat-nav-list>
+			@for (modul of modulFormArray.controls; track modul; let id = $index) {
+				@if(modul)
+				{
+					<mat-list-item disableRipple="true" clickStopPropagation [class]="modul === activeModul ? 'active-nav-item' : ''" role="listitem" id="modul" cdkDrag>
+						<div matRipple [matRippleTrigger]="trigger" [formGroup]="modul" clickStopPropagation class="modul" prevendDoubleClick (click)="setActiveModul(modul)">
+							<mat-checkbox clickStopPropagation formControlName="enabled" [checked]="modul.value.enabled" (change)="update($event.checked, id)" ></mat-checkbox>
+							<div #trigger class="modul-name">
+								<p>{{modul.controls.name.value}}</p>
+							</div>
+							<mat-action-list class="actions">
+								<button class="action" clickStopPropagation prevendDoubleClick id="eye" (click)="generateModul($event, id)">
+									<mat-icon>remove_red_eye</mat-icon>
+								</button>
+								<button clickStopPropagation prevendDoubleClick id="delete" (click)="deleteModul($event, id)">
+									<mat-icon>delete</mat-icon>
+								</button>
+							</mat-action-list>
+						</div>
+					</mat-list-item>
+				}
+			}
+			</mat-nav-list>
+		</div>
+	</mat-sidenav>
+	<mat-sidenav-content>
+		@if(activeModul)
+		{
+			<locust-modul-details [generatorForm]="generatorForm" [modulForm]="activeModul"></locust-modul-details>
+		}
+	</mat-sidenav-content>
+</mat-sidenav-container>

@@ -1,0 +1,12 @@
+<div class="center">
+	@if (isLoggedIn) {
+		<button mat-raised-button class="keycloak-authorization-button" color="primary" (click)="logout()">
+			{{ 'common.logout' | translate }}
+		</button>
+		<ngx-json-viewer [json]="keycloakConfig"></ngx-json-viewer>
+	} @else {
+		<button mat-raised-button class="keycloak-authorization-button" color="primary" (click)="login()">
+			{{ 'common.login' | translate }}
+		</button>
+	}
+</div>

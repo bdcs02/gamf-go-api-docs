@@ -1,0 +1,30 @@
+<mat-form-field class="chip-list" [appearance]="appearance" floatLabel="always">
+	<mat-label>{{ label }}</mat-label>
+	<mat-chip-grid #chipList [disabled]="formControl.disabled" [formControl]="formControl">
+		<mat-chip class="primary-mat-chip" *ngFor="let element of selectedElements" [value]="element" (removed)="remove(element)">
+			<span class="line-clamp-{{ 1 }}" [matTooltip]="displayFormat(element)" [matTooltipShowDelay]="500">{{ displayFormat(element) }}</span>
+			<button matChipRemove>
+				<mat-icon>cancel</mat-icon>
+			</button>
+		</mat-chip>
+	</mat-chip-grid>
+	<input
+		[id]="controlName + '-input'"
+		placeholder="{{ 'selectionList.filter' | translate }}"
+		#input
+		[formControl]="control"
+		[matChipInputFor]="chipList"
+		[matAutocomplete]="auto"
+		[matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+		(matChipInputTokenEnd)="add($event.value)"
+	/>
+	<mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+		<mat-option *ngFor="let element of filteredElements | async" [value]="element">
+			{{ displayFormat(element) }}
+		</mat-option>
+	</mat-autocomplete>
+	<mat-error>
+		<form-errors [control]="formControl"></form-errors>
+		<ng-content select="[errors]"></ng-content>
+	</mat-error>
+</mat-form-field>

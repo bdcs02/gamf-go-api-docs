@@ -1,0 +1,15 @@
+<div class="container">
+	<h3>{{'locust.modul.generated' | translate}}</h3>
+	<monaco-editor [content]="data.generated" [language]="'python'"></monaco-editor>
+</div>
+<div class="close-modul-container">
+	<button
+		mat-raised-button
+		color="primary"
+		preventDoubleClick
+		id="close"
+		[mat-dialog-close]="false"
+	>
+	{{'common.close' | translate}}
+	</button>
+</div>

@@ -1,0 +1,89 @@
+<div class="common-table">
+	<filter [config]="config" [loading]="dataSource.loading | async" [class.hidden]="config.hideFilter"></filter>
+	<mat-error class="missing-filter-error" *ngIf="missingFilter.length !== 0">{{ 'table.missingRequiredFilters' |
+		translate }}
+		<strong *ngFor="let missing of missingFilter"> {{ missing | translate }}</strong>
+	</mat-error>
+	<div class="table-container">
+		<mat-table [dataSource]="dataSource" matSort>
+			<ng-container *ngFor="let column of config.columns">
+				<ng-container [ngSwitch]="column.type">
+					<ng-container *ngSwitchCase="'icon'" [matColumnDef]="column.key">
+						<ng-container
+							*ngIf="column.sortable === undefined || column.sortable === true; then sortable else notSortable" />
+						<ng-template #sortable>
+							<mat-header-cell *matHeaderCellDef class="icon-cell" mat-sort-header> {{ column.translateKey | translate }}</mat-header-cell>
+						</ng-template>
+						<ng-template #notSortable>
+							<mat-header-cell *matHeaderCellDef class="icon-cell"> {{ column.translateKey | translate }} </mat-header-cell>
+						</ng-template>
+
+						<mat-cell *matCellDef="let row" class="icon-cell" [attr.data-label]="column.translateKey | translate"
+							[class.clickable-cell]="column.clickable && column.clickable(row)">
+							<mat-icon [matTooltip]="column.tooltip ? (column.tooltip(row) | translate) : null"
+								[matTooltipShowDelay]="500">{{
+								column?.icon(row[column.key]) }}</mat-icon>
+						</mat-cell>
+					</ng-container>
+					<ng-container *ngSwitchDefault [matColumnDef]="column.key">
+						<ng-container *ngIf="column.sortable === undefined || column.sortable === true; then sortable else notSortable"/>
+						<ng-template #sortable>
+							<mat-header-cell *matHeaderCellDef [class]="column.type + '-cell'" mat-sort-header> {{ column.translateKey | translate }} </mat-header-cell>
+						</ng-template>
+						<ng-template #notSortable>
+							<mat-header-cell *matHeaderCellDef [class]="column.type + '-cell'"> {{ column.translateKey | translate }} </mat-header-cell>
+						</ng-template>
+
+						<mat-cell *matCellDef="let row" [class]="column.type + '-cell'" [attr.data-label]="column.translateKey | translate"
+							[class.clickable-cell]="column.clickable && column.clickable(row)"
+							(click)="column.clickable && column.clickable(row) && column.onClick ? column.onClick(row) : null">
+							<span class="cell-value" [matTooltip]="getTooltipContent(row[column.key], column)" [matTooltipShowDelay]="500">
+								{{ row[column.key] | cellData: column }}
+							</span>
+						</mat-cell>
+					</ng-container>
+				</ng-container>
+			</ng-container>
+
+			<ng-container matColumnDef="actions" *ngIf="config.buttonConfig">
+				<mat-header-cell *matHeaderCellDef [class.action-menu-column]="config.buttonConfig.menu">{{ config.buttonConfig.titleTranslateKey! | translate}}</mat-header-cell>
+				<mat-cell *matCellDef="let row" class="actions" [class.action-menu-column]="config.buttonConfig.menu" [attr.data-label]="config.buttonConfig.titleTranslateKey ?? 'table.actions' | translate">
+					<ng-container *ngIf="!config.buttonConfig.menu">
+						<ng-container *ngFor="let button of config.buttonConfig.buttons">
+							<button mat-icon-button *ngIf="!button.hidden || button?.hidden && !button.hidden(row)"
+								(click)="button.onClick(row)" color="{{ button.color }}"
+								[matTooltip]="button.translateKey | translate" [matTooltipShowDelay]="500" id="row-actions">
+								<mat-icon>{{ button.icon }}</mat-icon>
+							</button>
+						</ng-container>
+					</ng-container>
+					<ng-container *ngIf="config.buttonConfig.menu">
+						<button *ngIf="hasDisplayedButtons(row)" mat-icon-button [matMenuTriggerFor]="menu" [matTooltip]="'table.actions' | translate"
+							id="row-actions">
+							<mat-icon>more_vert</mat-icon>
+						</button>
+						<mat-menu #menu="matMenu">
+							<ng-container *ngFor="let button of config.buttonConfig.buttons">
+								<button mat-menu-item *ngIf="!button.hidden || button?.hidden && !button.hidden(row)"
+									(click)="button.onClick(row)">
+									<mat-icon>{{ button.icon }}</mat-icon>
+									<span>{{ button.translateKey | translate }} </span>
+								</button>
+							</ng-container>
+						</mat-menu>
+					</ng-container>
+				</mat-cell>
+			</ng-container>
+
+			<mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+			<mat-row *matRowDef="let row; columns: displayedColumns" (click)="rowClickFunction(row)" class="on-primary-background-color-on-hover"> </mat-row>
+		</mat-table>
+		<div class="spinner-container" *ngIf="dataSource?.loading | async">
+			<mat-spinner></mat-spinner>
+		</div>
+		<mat-paginator [length]="dataSource.count | async" [pageSizeOptions]="[10, 25, 50, 100]" [pageSize]="10"
+			showFirstLastButtons [class.hidden]="config.hidePaginator">
+		</mat-paginator>
+	</div>
+
+</div>

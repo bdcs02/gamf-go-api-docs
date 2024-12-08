@@ -1,0 +1,15 @@
+.display {
+	display: none;
+}
+
+.header-buttons {
+	display: none;
+}
+
+@media screen and (min-width: 960px) {
+	.header-buttons {
+		display: flex;
+		align-items: center;
+		gap: 1rem;
+	}
+}

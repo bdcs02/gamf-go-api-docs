@@ -1,0 +1,50 @@
+<div class="container">
+	<div class="group">
+		<mat-form-field appearance="outline" class="inputField element">
+			<mat-label>{{ 'locust.name' | translate }}</mat-label>
+			<input #name matInput id="name" />
+		</mat-form-field>
+
+		<button prevendDoubleClick class="add" (click)="addDictionary(name.value)">
+			<mat-icon>add</mat-icon>
+		</button>
+	</div>
+
+	@if(formArray)
+	{
+		<mat-accordion cdkDropList (cdkDropListDropped)="dropDictionary($event)">
+		@for (dictionary of formArray.controls; track dictionary; let dictionaryId = $index)
+		{
+			<mat-expansion-panel cdkDrag hideToggle>
+				<mat-expansion-panel-header>
+					<mat-panel-title class="deletable">
+						<div class="title-wrapper">
+							<div class="path-wrapper">{{ dictionary.controls.name.value }}</div>
+						</div>
+						<button prevendDoubleClick id="delete-dictionary" (click)="deleteDictionary(dictionaryId)">
+							<mat-icon>delete</mat-icon>
+						</button>
+					</mat-panel-title>
+				</mat-expansion-panel-header>
+				<button type="button" mat-raised-button id="addRow" color="primary" (click)="addWord(dictionaryId)">
+					{{ 'locust.dictionaries.word.newWord' | translate }}
+				</button>
+				<div class="words">
+				@for (word of formArray.controls[dictionaryId].controls.words.controls; track word; let wordId = $index)
+				{
+					<div [formGroup]="word">
+						<mat-form-field appearance="outline">
+							<mat-label>{{ 'locust.dictionaries.word.word' | translate }}</mat-label>
+							<input #name matInput formControlName="word" id="word" />
+							<button mat-icon-button matSuffix prevendDoubleClick id="delete-word" (click)="deleteWord(dictionaryId, wordId)">
+								<mat-icon>delete</mat-icon>
+							</button>
+						</mat-form-field>
+					</div>
+				}
+				</div>
+			</mat-expansion-panel>
+		}
+		</mat-accordion>
+	}
+</div>

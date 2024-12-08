@@ -1,0 +1,11 @@
+<mat-form-field class="form-field-full-width" appearance="outline">
+	<mat-label>{{ label }}</mat-label>
+	<input type="text" [placeholder]="'common.search' | translate" aria-label="Number" matInput [formControl]="control" [matAutocomplete]="auto" id="filter-autocomplete"/>
+	<mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" [hideSingleSelectionIndicator]="true" (optionSelected)="optionSelected($event)">
+		<cdk-virtual-scroll-viewport itemSize="48" class="virtual-scroll-container" [minBufferPx]="300">
+			<mat-option *cdkVirtualFor="let option of filteredOptions | async" [value]="option.value">
+				{{ option.displayValue }}
+			</mat-option>
+		</cdk-virtual-scroll-viewport>
+	</mat-autocomplete>
+</mat-form-field>

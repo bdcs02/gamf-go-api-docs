@@ -1,0 +1,246 @@
+@use '@angular/material' as mat;
+
+@include mat.core();
+
+$on-primary: #ecf7f9;
+$on-secondary: #effcfd;
+
+// Foreground Elements
+// Light Theme Text
+$dark-text: #000000;
+$dark-primary-text: rgba($dark-text, 0.87);
+$dark-accent-text: rgba($dark-primary-text, 0.54);
+$dark-disabled-text: rgba($dark-primary-text, 0.38);
+$dark-dividers: rgba($dark-primary-text, 0.12);
+$dark-focused: rgba($dark-primary-text, 0.12);
+$light-primary-text: $on-primary;
+
+$mat-light-theme-foreground: (
+	base: black,
+	divider: $dark-dividers,
+	dividers: $dark-dividers,
+	disabled: $dark-disabled-text,
+	disabled-button: rgba($dark-text, 0.26),
+	disabled-text: $dark-disabled-text,
+	elevation: black,
+	secondary-text: $dark-accent-text,
+	hint-text: $dark-disabled-text,
+	accent-text: $dark-accent-text,
+	icon: $dark-accent-text,
+	icons: $dark-accent-text,
+	text: $dark-primary-text,
+	slider-min: $dark-primary-text,
+	slider-off: rgba($dark-text, 0.26),
+	slider-off-active: $dark-disabled-text
+);
+
+// Background config
+// Light bg
+$light-background: #fafafa;
+$light-bg-darker-5: darken($light-background, 5%);
+$light-bg-darker-10: darken($light-background, 10%);
+$light-bg-darker-20: darken($light-background, 20%);
+$light-bg-darker-30: darken($light-background, 30%);
+$light-bg-lighter-5: lighten($light-background, 5%);
+$dark-bg-tooltip: lighten(#2c2c2c, 20%);
+$dark-bg-alpha-4: rgba(#2c2c2c, 0.04);
+$dark-bg-alpha-12: rgba(#2c2c2c, 0.12);
+
+$mat-light-theme-background: (
+	background: $light-background,
+	status-bar: $light-bg-darker-20,
+	app-bar: $light-bg-darker-5,
+	hover: $dark-bg-alpha-4,
+	card: $light-bg-lighter-5,
+	dialog: $light-bg-lighter-5,
+	tooltip: $dark-bg-tooltip,
+	disabled-button: $dark-bg-alpha-12,
+	raised-button: $light-bg-lighter-5,
+	focused-button: $dark-focused,
+	selected-button: $light-bg-darker-20,
+	selected-disabled-button: $light-bg-darker-30,
+	disabled-button-toggle: $light-bg-darker-10,
+	unselected-chip: $light-bg-darker-10,
+	disabled-list-option: $light-bg-darker-10
+);
+
+// Theme Config
+body {
+	--primary-color: #44b1c4;
+	--primary-lighter-color: #c7e8ed;
+	--primary-darker-color: #2d98af;
+	--text-primary-color: #{$dark-primary-text};
+	--text-primary-lighter-color: #{$dark-primary-text};
+	--text-primary-darker-color: #{$light-primary-text};
+	--text-primary-inactive-color: #79747e;
+
+	--accent-color: #137c87;
+	--accent-lighter-color: #b8d8db;
+	--accent-darker-color: #0b5f6a;
+	--text-accent-color: #{$light-primary-text};
+	--text-accent-lighter-color: #{$dark-primary-text};
+	--text-accent-darker-color: #{$light-primary-text};
+
+	--warn-color: #ff0000;
+	--warn-lighter-color: #ffb3b3;
+	--warn-darker-color: #ff0000;
+	--text-warn-color: #{$light-primary-text};
+	--text-warn-lighter-color: #{$dark-primary-text};
+	--text-warn-darker-color: #{$light-primary-text};
+}
+
+$mat-primary: (
+	main: #44b1c4,
+	lighter: #c7e8ed,
+	darker: #2d98af,
+	200: #44b1c4,
+	contrast: (
+		main: $light-primary-text,
+		lighter: $dark-primary-text,
+		darker: $light-primary-text
+	)
+);
+
+$theme-primary: mat.define-palette($mat-primary, main, lighter, darker);
+
+$mat-accent: (
+	main: #137c87,
+	lighter: #b8d8db,
+	darker: #0b5f6a,
+	200: #137c87,
+	contrast: (
+		main: $light-primary-text,
+		lighter: $dark-primary-text,
+		darker: $light-primary-text
+	)
+);
+
+$theme-accent: mat.define-palette($mat-accent, main, lighter, darker);
+
+$mat-warn: (
+	main: #ff0000,
+	lighter: #ffb3b3,
+	darker: #ff0000,
+	200: #ff0000,
+	contrast: (
+		main: $light-primary-text,
+		lighter: $dark-primary-text,
+		darker: $light-primary-text
+	)
+);
+
+$theme-warn: mat.define-palette($mat-warn, main, lighter, darker);
+
+$theme: (
+	primary: $theme-primary,
+	accent: $theme-accent,
+	warn: $theme-warn,
+	is-dark: false,
+	foreground: $mat-light-theme-foreground,
+	background: $mat-light-theme-background
+);
+
+// Theme Init
+@include mat.all-component-themes($theme);
+
+//overrides
+.mat-mdc-raised-button.mat-primary {
+	color: $on-primary !important;
+}
+
+.mat-mdc-raised-button.mat-accent {
+	color: $on-secondary !important;
+}
+
+.primary-mat-chip {
+	background-color: darken($on-primary, 5) !important;
+	border: 1px solid var(--primary-color) !important;
+}
+
+.primary-mat-chip.non-interactive {
+	opacity: 1 !important;
+}
+
+.primary-mat-chip .mat-mdc-chip-action-label,
+.primary-mat-chip .mat-icon {
+	color: var(--primary-color) !important;
+}
+
+.accent-mat-chip {
+	background-color: $on-secondary !important;
+	border: 1px solid var(--accent-color) !important;
+}
+
+.accent-mat-chip .mat-mdc-chip-action-label,
+.accent-mat-chip .mat-icon {
+	color: var(--accent-darker-color) !important;
+}
+
+.mat-mdc-raised-button {
+	border-radius: 20px !important;
+	padding-left: 2rem !important;
+	padding-right: 2rem !important;
+}
+
+button.mdc-list-item:hover:enabled {
+	background-color: $on-primary !important;
+}
+
+button.mdc-list-item:hover:enabled .mdc-list-item__primary-text,
+button.mdc-list-item:hover:enabled .mat-icon {
+	color: var(--primary-color) !important;
+}
+
+.on-primary-background-color-on-hover {
+	transition: background-color 200ms;
+}
+
+.on-primary-background-color-on-hover:hover {
+	background-color: darken($on-primary, 10) !important;
+}
+
+.on-primary-background {
+	background-color: $on-primary !important;
+}
+
+.primary-text-color {
+	color: var(--primary-color) !important;
+}
+
+.mat-focused .focused-primary-color {
+	color: var(--primary-color) !important;
+}
+
+.accent-text-color {
+	color: var(--accent-color) !important;
+}
+
+.accent-background-color-on-hover:hover {
+	background-color: var(--accent-color) !important;
+}
+
+.underline-animation {
+	position: relative;
+}
+
+.underline-animation::after {
+	content: '';
+	position: absolute;
+	background-color: var(--primary-color);
+	left: 0;
+	bottom: -4px;
+	height: 3px;
+	width: 0;
+	transition: width 175ms ease-out;
+}
+
+.underline-animation:hover {
+	&::after {
+		width: 100%;
+	}
+}
+
+.active-route {
+	background-color: $on-primary !important;
+	color: var(--primary-color) !important;
+}

@@ -1,0 +1,36 @@
+<div class= container>
+	<div class="header">
+		<h2 class="title">{{title}}</h2>
+		<div class="actions">
+			<button class="action" mat-raised-button prevendDoubleClick id="project-generation" color="primary" (click)="generate()">
+				{{ 'locust.projectGeneration' | translate }}
+			</button>
+			<button class="action" mat-raised-button prevendDoubleClick id="locust-export" color="primary" (click)="exportForm()">
+				{{ 'common.export' | translate }}
+			</button>
+			<button class="action" mat-raised-button prevendDoubleClick id="locust-import" color="primary" (click)="importForm()">
+				<input #fileInput type="file" accept=".json" (change)="openFile($event)" />
+				{{ 'common.import' | translate }}
+			</button>
+		</div>
+	</div>
+	<div class="content">
+		<mat-tab-group dynamicHeight class="tab">
+			@if(generatorForm)
+			{
+				<mat-tab label="{{'navigation.locust.general' | translate}}"><locust-general [formGroup]="generatorForm.controls.general"></locust-general></mat-tab>
+				<mat-tab label="{{'navigation.locust.moduls' | translate}}"><locust-moduls [generatorForm]="generatorForm"></locust-moduls></mat-tab>
+				<mat-tab label="{{'navigation.locust.authorization' | translate}}"><locust-auth [formArray]="generatorForm.controls.auth"></locust-auth></mat-tab>
+				<mat-tab label="{{'navigation.locust.files' | translate}}"><locust-files [formArray]="generatorForm.controls.files"></locust-files></mat-tab>
+				<mat-tab label="{{'navigation.locust.dictionaries' | translate}}"><locust-dictionaries [formArray]="generatorForm.controls.dictionaries"></locust-dictionaries></mat-tab>
+			}
+		</mat-tab-group>
+			<button mat-raised-button prevendDoubleClick id="locust-save" color="primary" (click) = "saveForm()">
+				{{ 'common.save' | translate }}
+			</button>
+			@if(generatorForm && generatorForm.dirty)
+			{
+				<mat-chip class="dirty" [@inOutAnimation]>{{'locust.dirty' | translate}}</mat-chip>
+			}
+		</div>
+</div>

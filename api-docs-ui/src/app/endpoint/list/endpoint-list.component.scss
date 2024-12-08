@@ -1,0 +1,52 @@
+.title-wrapper {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.path-wrapper {
+	width: 15rem;
+	word-break: break-all;
+	padding-right: 1rem;
+}
+
+.filter {
+	display: flex;
+	width: 50%;
+
+	button {
+		margin-top: 0.75rem;
+	}
+}
+
+.filter > * {
+	margin: 0.3rem;
+}
+
+.method-badge {
+	display: flex;
+	justify-content: center;
+}
+
+.filter-container {
+	display: flex;
+	justify-content: space-between;
+}
+
+.export {
+	margin:0.75rem;
+}
+
+.filter-container {
+	display: flex;
+	justify-content: space-between;
+}
+
+.global-variables {
+	margin:0.75rem;
+}
+
+.buttons {
+	display: flex;
+	justify-content: space-between;
+}

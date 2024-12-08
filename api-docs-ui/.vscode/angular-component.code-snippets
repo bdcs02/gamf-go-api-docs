@@ -1,0 +1,57 @@
+{
+	"angular-component": {
+		"scope": "angular, typescript",
+		"prefix": "component",
+		"body": [
+			"import { Component } from '@angular/core';",
+			"",
+			"@Component({",
+			"    selector: '${1:Name}',",
+			"    templateUrl: '${1:Name}.component.html',",
+			"    styleUrls: ['${1:Name}.component.scss']",
+			"})",
+			"export class ${1/(.*)/${1:/pascalcase}/}Component {$0}"
+		],
+		"description": "Create angular component boilerplate"
+	},
+	"angular-component-constructor": {
+		"scope": "angular, typescript",
+		"prefix": "component-constructor",
+		"body": [
+			"import { Component } from '@angular/core';",
+			"",
+			"@Component({",
+			"    selector: '${1:Name}',",
+			"    templateUrl: '${1:Name}.component.html',",
+			"    styleUrls: ['${1:Name}.component.scss']",
+			"})",
+			"export class ${1/(.*)/${1:/pascalcase}/}Component {",
+			"",
+			"    constructor($0) {}",
+			"}"
+		],
+		"description": "Create angular component boilerplate"
+	},
+	"angular-component-oninit": {
+		"scope": "angular, typescript",
+		"prefix": "component-oninit",
+		"body": [
+			"import { Component, OnInit } from '@angular/core';",
+			"",
+			"@Component({",
+			"    selector: '${1:Name}',",
+			"    templateUrl: '${1:Name}.component.html',",
+			"    styleUrls: ['${1:Name}.component.scss']",
+			"})",
+			"export class ${1/(.*)/${1:/pascalcase}/}Component implements OnInit {",
+			"",
+			"    constructor($0) {}",
+			"",
+			"    public ngOnInit(): void {",
+			"        console.log('inited!')",
+			"    }",
+			"}"
+		],
+		"description": "Create angular component boilerplate"
+	}
+}

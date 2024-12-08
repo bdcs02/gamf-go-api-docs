@@ -1,0 +1,26 @@
+.example-holder {
+	display: flex;
+	width: 100%;
+	justify-content: space-between;
+}
+
+.mapping-holder {
+	display: flex;
+	justify-content: space-between;
+}
+
+.mapping {
+	width: 50%;
+	padding-right: 1rem;
+	flex-grow: 1;
+}
+
+.example {
+	width: 50%;
+	padding-right: 1rem;
+	flex-grow: 1;
+}
+
+#details {
+	float: right;
+}

@@ -1,0 +1,65 @@
+<component-frame [title]="apiData?.appname" [backButtonVisible]="false">
+	<ng-container header-buttons></ng-container>
+	<ng-container content>
+		<div class="filter-container">
+			<div class="filter">
+				<mat-form-field appearance="outline">
+					<mat-icon matPrefix>search</mat-icon>
+					<input
+						(keydown.enter)="filter(search.value, methodList.matSelect.value)"
+						#search
+						matInput
+						type="search"
+						id="search-input"
+						placeholder="{{ 'common.search' | translate }}"
+					/>
+				</mat-form-field>
+
+				<dropdown-list #methodList id="method-dropdown" [searchable]="true" [items]="methods" [label]="'Method'"></dropdown-list>
+
+				<div>
+					<button
+						mat-raised-button
+						preventDoubleClick
+						id="filter"
+						color="primary"
+						(click)="filter(search.value, methodList.matSelect.value)"
+					>
+						{{ 'common.search' | translate }}
+					</button>
+				</div>
+			</div>
+			<div class="buttons">
+				<div class="global-variables">
+					<button mat-raised-button prevendDoubleClick id="global-variables" color="primary" (click)="openGlobalVariables()">
+						{{ 'common.globalVariables' | translate }}
+					</button>
+				</div>
+				<div class="export">
+					<button mat-raised-button prevendDoubleClick id="export" color="primary" (click)="exportPdf()">
+						{{ 'common.export' | translate }}
+					</button>
+				</div>
+			</div>
+		</div>
+		<div *ngIf="apiData">
+			<mat-accordion>
+				<mat-expansion-panel *ngFor="let endpoint of apiData.endpoints" hideToggle>
+					<mat-expansion-panel-header>
+						<mat-panel-title>
+							<div class="title-wrapper">
+								<div class="path-wrapper">{{ endpoint.path }}</div>
+								<div class="category-badge">
+									<method-chip [text]="endpoint.method"></method-chip>
+									<method-chip [backgroundColor]="categoryBadgeColor" [text]="endpoint.category"></method-chip>
+								</div>
+							</div>
+						</mat-panel-title>
+					</mat-expansion-panel-header>
+					<endpoint-info [endpoint]="endpoint"></endpoint-info>
+					<load-request [title]="'navigation.savedRequests' | translate" [method]="endpoint.method" [path]="endpoint.path"></load-request>
+				</mat-expansion-panel>
+			</mat-accordion>
+		</div>
+	</ng-container>
+</component-frame>

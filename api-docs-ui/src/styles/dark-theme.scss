@@ -1,0 +1,218 @@
+:root {
+	--mat-color-dark-50: #ebeef1;
+	--mat-color-dark-100: #b9baba;
+	--mat-color-dark-200: #8a8c8d;
+	--mat-color-dark-300: #414244;
+	--mat-color-dark-400: #1f2122;
+	--mat-color-dark-500: #14181a;
+	--mat-color-dark-600: #121517;
+	--mat-color-dark-700: #0e1113;
+	--mat-color-dark-800: #0b0e0f;
+	--mat-color-dark-900: #060808;
+	--mat-color-dark-contrast-light: #000000;
+	--mat-color-dark-contrast-dark: #ffffff;
+}
+
+body.dark-theme {
+	--mat-row-hover-color: var(--mat-color-dark-300);
+	--mat-row-selected-color: var(--mat-color-dark-300);
+	--mat-chip-border-color: #486775;
+	--mat-chip-text-color: var(--mat-color-dark-50);
+	--mat-chip-background-color: var(--mat-color-dark-400);
+	--mat-grid-item-background-color: var(--mat-color-dark-400);
+	--mat-grid-item-text-color: var(--mat-color-dark-50);
+	--mat-form-field-border-color: rgba(255, 255, 255, 0.38);
+	--ngx-json-key: #9578ad;
+	--ngx-json-number: #04b0a0;
+	--ngx-json-object: rgba(255, 255, 255, 0.38);
+	--ngx-json-string: #cc4949;
+	--ngx-json-boolean: #fd0eff;
+	--ngx-json-null-bg: #303030;
+	--mat-grid-item-text-color-light: var(--mat-color-dark-50);
+	--right-side-menu-span-dark: #ffffff;
+	background-color: var(--mat-color-dark-600);
+
+	.statistic-container,
+	.month-picker-container,
+	.mat-sidenav-container {
+		background-color: var(--mat-color-dark-500);
+	}
+
+	.mat-sidenav-container:has(.dashboard) {
+		background-color: var(--mat-color-dark-600);
+	}
+
+	.nav-items .right-side-menu span {
+		color: var(--right-side-menu-span-dark);
+	}
+
+	.active-nav-item {
+		background-color: var(--mat-color-dark-300);
+	}
+	.active-nav-item::after {
+		background-color: #4caf50;
+	}
+
+	.file-button {
+		border-radius: 0.25rem;
+		padding: 0 1rem;
+		height: 2.5rem;
+		cursor: pointer;
+		background-color: #3f3f3f;
+		border: 0.063rem solid var(--mat-color-dark-100);
+		box-shadow: 0 0.063rem 0 var(--mat-color-dark-100);
+		transition: background-color 200ms;
+	}
+
+	.file-button:hover {
+		border: 0.063rem solid white;
+		background-color: #3f3f3f;
+	}
+
+	.file-button:active {
+		background-color: #666666;
+	}
+
+	#old-version {
+		color: #ff4747;
+	}
+	.mat-card-content,
+	.mat-mdc-table,
+	.mat-mdc-paginator-container,
+	.mdc-menu-surface,
+	.mat-mdc-dialog-surface,
+	.mdc-text-field--filled:not(.mdc-text-field--disabled),
+	.statistic-search-list-card,
+	.email-list-item,
+	.datasheet-base,
+	.password-rule-card-content,
+	.userlevel-list-item {
+		background-color: var(--mat-color-dark-400);
+	}
+
+	.mat-mdc-form-field-focus-overlay {
+		background-color: var(--mat-color-dark-300);
+	}
+
+	#downloadResponse {
+		background-color: var(--mat-color-dark-300);
+	}
+
+	.editor-container.ql-toolbar.ql-snow {
+		border-color: #6d7071;
+	}
+
+	.ql-container.ql-snow {
+		border-color: #6d7071;
+	}
+
+	.editor-container button:not(:hover) {
+		.ql-stroke {
+			stroke: var(--mat-color-dark-100);
+		}
+
+		.ql-fill {
+			fill: var(--mat-color-dark-100);
+		}
+
+		.ql-strike {
+			fill: var(--mat-color-dark-100);
+		}
+	}
+
+	.ql-picker-label {
+		color: var(--mat-color-dark-100);
+		.ql-stroke {
+			stroke: var(--mat-color-dark-100);
+		}
+	}
+
+	.mat-grid-tile {
+		background-color: var(--mat-color-dark-300);
+	}
+
+	.mat-drawer-container {
+		.mat-drawer-backdrop.mat-drawer-shown {
+			background-color: rgb(0, 0, 0, 60%) !important;
+		}
+
+		.mat-drawer {
+			box-shadow: none;
+			background-color: var(--mat-color-dark-400) !important;
+		}
+	}
+
+	.mat-mdc-form-field > *:first-of-type {
+		background-color: var(--mat-color-dark-300);
+	}
+
+	.brand {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		position: relative;
+		background-color: var(--mat-color-dark-400);
+		color: var(--mat-color-dark-50);
+		&::after {
+			content: '';
+			inset: 0;
+			z-index: 2;
+			position: absolute;
+			background-size: cover;
+			background-image: url('/assets/images/background_low_poly.png');
+			background-position: right;
+		}
+	}
+
+	component-frame {
+		background-color: var(--mat-color-dark-600);
+		.frame-container {
+			background-color: var(--mat-color-dark-400);
+		}
+	}
+
+	.transaction-type-hint-table tr th {
+		color: var(--mat-color-dark-50) !important;
+	}
+
+	input {
+		--mdc-outlined-text-field-disabled-input-text-color: var(--mat-color-dark-100);
+	}
+
+	.mat-mdc-raised-button:not(:disabled) {
+		color: var(--mat-color-dark-400);
+	}
+
+	.mat-mdc-unelevated-button:not(:disabled) {
+		color: var(--mat-color-dark-400);
+	}
+
+	@import url('src/styles/json-editor-dark-theme.scss');
+
+	.http-info {
+		color: #3ca0f1 !important;
+	}
+
+	.http-success {
+		color: #0cf50c !important;
+	}
+
+	.http-redirect {
+		color: #f3f707 !important;
+	}
+
+	.http-client-server {
+		color: #d11515 !important;
+	}
+
+	.progress-bar {
+		background-color: var(--mat-color-dark-400);
+	}
+
+	.response {
+		height: fit-content;
+		margin: 10px;
+		background: var(--mat-color-dark-400);
+		padding: 1rem;
+	}
+}

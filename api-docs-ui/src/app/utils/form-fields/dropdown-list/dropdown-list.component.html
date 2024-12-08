@@ -1,0 +1,43 @@
+<mat-form-field [appearance]="appearance">
+	<mat-label>{{ label }}</mat-label>
+	<mat-select
+		[id]="controlName + '-input'"
+		#select
+		panelClass="dropdown-list"
+		[formControl]="formControl"
+		[value] ="value"
+		disableOptionCentering
+		(selectionChange)="onSelectionChange($event)"
+	>
+		<mat-option class="mat-elevation-z1 dropdown-input" *ngIf="searchable || allowCustomValue" clickStopPropagation>
+			<mat-form-field>
+				<input
+					matInput
+					id="dropdown-list-search-input"
+					[formControl]="inputControl"
+					#searchSelectInput
+					(keydown.space)="$event.stopPropagation()"
+					(keydown.enter)="allowCustomValue ? addCustomItem($event) : null"
+				/>
+			</mat-form-field>
+		</mat-option>
+		<mat-option
+			*ngFor="let item of filteredElements | async"
+			[value]="valueKey ? item[valueKey] : item"
+			[disabled]="isDisabled(item)"
+			[class.hidden]="isDisabled(item)"
+		>
+			<span>{{ displayKey ? item[displayKey] : displayFormat(item) }}</span>
+		</mat-option>
+	</mat-select>
+	<mat-icon
+		class="dropdown-info-icon focused-primary-color"
+		*ngIf="customItem && (customItem === formControl.value || customItem[valueKey] === formControl.value)"
+		matTooltip="{{ 'document.category.newCategory' | translate }}"
+		>info</mat-icon
+	>
+	<mat-error>
+		<form-errors [control]="formControl"></form-errors>
+		<ng-content select="[errors]"></ng-content>
+	</mat-error>
+</mat-form-field>

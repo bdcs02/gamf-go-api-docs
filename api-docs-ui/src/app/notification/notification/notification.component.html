@@ -1,0 +1,31 @@
+<div
+	class="notification-container mat-elevation-z6"
+	[class]="'notification-' + notification.type"
+	[class.expandable]="notification.details"
+	(mouseover)="stopped = true"
+	(click)="notificationClick()"
+>
+	<div class="top-row">
+		<div class="icon" [ngSwitch]="notification.type">
+			<mat-icon *ngSwitchCase="'success'">check_circle_outline</mat-icon>
+			<mat-icon *ngSwitchCase="'info'">info</mat-icon>
+			<mat-icon *ngSwitchCase="'warn'">warning</mat-icon>
+			<mat-icon *ngSwitchCase="'error'">error_outline</mat-icon>
+			<span *ngSwitchDefault></span>
+		</div>
+		<div class="message line-clamp-1 user-select-none">
+			<strong *ngIf="notification.message">
+				{{ notification.message }}
+			</strong>
+			<span *ngIf="notification.translate">
+				{{ notification.translate | translate }}
+			</span>
+		</div>
+	</div>
+
+	<div class="details line-clamp-5 user-select-none">
+		{{ notification.details }}
+	</div>
+	<button mat-icon-button class="delete-button" (click)="remove()"><mat-icon>clear</mat-icon></button>
+	<mat-progress-bar *ngIf="!stopped" mode="determinate" value="100" color="accent" [@progressBar]></mat-progress-bar>
+</div>

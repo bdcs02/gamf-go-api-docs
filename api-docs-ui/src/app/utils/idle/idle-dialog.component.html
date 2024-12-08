@@ -1,0 +1,5 @@
+<div class="idle-dialog">
+	<div class="mat-display-1">{{ 'inactivity.title' | translate }}</div>
+	<div class="mat-display-5">{{ 'inactivity.description' | translate: { seconds: timeLeft } }}</div>
+</div>
+<mat-progress-bar mode="determinate" [value]="progress"></mat-progress-bar>

@@ -1,0 +1,35 @@
+<div class="container">
+	<h3>{{'locust.modul.add' | translate}}</h3>
+	<div class="login-form" [formGroup]="form">
+		<text-input
+		[label]="'locust.name' | translate"
+		formControlName="name"
+		[inputLimit]="255"
+		></text-input>
+	</div>
+</div>
+<div class="button-container">
+	<button
+		mat-button
+		color="primary"
+		preventDoubleClick
+		id="close"
+		class="action"
+		[mat-dialog-close]="false"
+		(click)="closeDialog()"
+	>
+	{{'common.close' | translate}}
+	</button>
+
+	<button
+		mat-button
+		color="primary"
+		preventDoubleClick
+		id="save"
+		class="action"
+		[mat-dialog-close]="false"
+		(click)="saveDialog()"
+	>
+	{{'common.save' | translate}}
+	</button>
+</div>

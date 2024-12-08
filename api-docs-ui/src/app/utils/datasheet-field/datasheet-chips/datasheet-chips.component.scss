@@ -1,0 +1,38 @@
+.datasheet-base {
+	height: 100%;
+	grid-template-areas:
+		'title copy'
+		'value value';
+}
+
+.datasheet-chips {
+	max-height: 100%;
+	overflow-y: auto;
+}
+
+.datasheet-chips.empty::before {
+	content: '—';
+	width: 1rem;
+	overflow: hidden;
+}
+
+.datasheet-value {
+	align-items: flex-start;
+	min-height: 0;
+	padding: 0.5rem 1rem 0.35rem 1rem;
+}
+
+.datasheet-copy {
+	margin-top: 10px;
+}
+
+mat-chip {
+	overflow-x: hidden;
+}
+
+:host ::ng-deep .mat-mdc-standard-chip .mdc-evolution-chip__cell--primary,
+:host ::ng-deep .mat-mdc-standard-chip .mdc-evolution-chip__action--primary,
+:host ::ng-deep .mat-mdc-standard-chip .mat-mdc-chip-action-label {
+	overflow: hidden;
+	cursor: pointer;
+}

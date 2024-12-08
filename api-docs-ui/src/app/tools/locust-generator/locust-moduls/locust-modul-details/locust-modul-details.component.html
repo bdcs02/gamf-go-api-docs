@@ -1,0 +1,81 @@
+<div class="container" [formGroup]="modulForm">
+	<h4>{{ 'navigation.locust.moduls' | translate }}</h4>
+
+	<mat-form-field appearance="outline" class="inputField element">
+		<mat-label>{{ 'locust.modul.details.modulName' | translate }}</mat-label>
+		<input matInput formControlName="name" id="name" />
+	</mat-form-field>
+
+	<h4>{{ 'navigation.endpoints' | translate }}</h4>
+
+	<div class="group">
+
+		<mat-form-field appearance="outline" class="element">
+			<mat-label>{{ 'locust.modul.details.selectEndpoint' | translate }}</mat-label>
+			<input type="text"
+				matInput
+				#endpointDropdown
+				[matAutocomplete]="auto"
+				(keypress)="filter(endpointDropdown.value)"
+				(keyup.backspace)="filter(endpointDropdown.value)"
+				(change)="filter(endpointDropdown.value)"
+			>
+			<mat-autocomplete #auto="matAutocomplete">
+				@for (endpoint of filteredEndpoints; track endpoint) {
+					<mat-option [value]="endpoint.path">
+						<method-chip [text]="endpoint.method"></method-chip>
+						{{endpoint.path}}
+					</mat-option>
+				}
+			</mat-autocomplete>
+		</mat-form-field>
+
+		<button prevendDoubleClick class="add" id="add-endpoint" (click)="addEndpointToModul(endpointDropdown.value)" >
+			<mat-icon>add</mat-icon>
+		</button>
+	</div>
+
+	@if(modulForm)
+	{
+		<mat-accordion cdkDropList (cdkDropListDropped)="dropEndpoint($event)">
+			@for (endpoint of modulForm.controls.endpoints.controls; track endpoint; let id = $index)
+			{
+				<mat-expansion-panel cdkDrag hideToggle>
+					<mat-expansion-panel-header>
+						<mat-panel-title class="endpoint">
+							<div class="title-wrapper">
+								<div class="path-wrapper">{{ endpoint.controls.path.value }}</div>
+							</div>
+							<button prevendDoubleClick id="delete" (click)="deleteEndpointFromModul(id)">
+								<mat-icon>delete</mat-icon>
+							</button>
+						</mat-panel-title>
+					</mat-expansion-panel-header>
+					<div [formGroup]="endpoint">
+						<div class="group">
+							<mat-form-field appearance="outline" class="inputField">
+								<mat-label>{{ 'locust.name' | translate }}</mat-label>
+								<input matInput formControlName="name" id="name" />
+							</mat-form-field>
+							<mat-form-field appearance="outline" class="inputField small">
+								<mat-label>{{ 'locust.modul.details.weight' | translate }}</mat-label>
+								<input matInput formControlName="weight" id="weight" />
+							</mat-form-field>
+						</div>
+						<mat-form-field appearance="outline" class="inputField">
+							<mat-label>{{ 'locust.url' | translate }}</mat-label>
+							<input matInput formControlName="path" id="path" />
+						</mat-form-field>
+
+						<locust-modul-auth-type [endpointForm]="endpoint" [generatorForm]="generatorForm"></locust-modul-auth-type>
+						@if(endpoints)
+						{
+							<locust-modul-request-body [dictionaries]="generatorForm.controls.dictionaries" [formArray]="endpoint.controls.dataStructure" [endpoint]="endpoints[endpoint.value.id!]"></locust-modul-request-body>
+						}
+						<locust-modul-response [formArray]="endpoint.controls.responseHandler"></locust-modul-response>
+					</div>
+				</mat-expansion-panel>
+			}
+		</mat-accordion>
+	}
+</div>

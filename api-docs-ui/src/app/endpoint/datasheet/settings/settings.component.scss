@@ -1,0 +1,9 @@
+.form-content {
+	width: 50%;
+}
+
+.group-container {
+	display: grid;
+	grid-template-columns: auto auto;
+	gap: 0.5rem 1rem;
+}

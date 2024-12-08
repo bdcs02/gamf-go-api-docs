@@ -1,0 +1,44 @@
+$active-nav-item-light: #ececec;
+$active-nav-item-after: #358438;
+
+.main-container {
+	height: 100%;
+	display: flex;
+}
+
+.dg-options {
+	width: 100%;
+	max-width: 15rem;
+	overflow-y: scroll;
+	background-color: #303030;
+
+}
+
+
+.active-nav-item::after {
+	content: '';
+	position: absolute;
+	width: 5px;
+	right: 0;
+	height: 100%;
+	z-index: 5;
+	background-color: $active-nav-item-after;
+}
+
+.node {
+	display: flex;
+	align-items: center;
+	p {
+		font-size: smaller;
+	}
+}
+
+button {
+	background: none;
+	border: none;
+}
+
+
+.active-nav-item {
+	background-color: $active-nav-item-light;
+}

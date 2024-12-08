@@ -1,0 +1,138 @@
+@use 'sass:map';
+@use '@angular/material' as mat;
+
+@include mat.core();
+
+$primary-green: (
+	50: #f3faf3,
+	100: #e3f5e3,
+	200: #c8eac9,
+	300: #9dd89f,
+	400: #6bbd6e,
+	500: #4caf50,
+	600: #358438,
+	700: #2d6830,
+	800: #275429,
+	900: #224525,
+	950: #0e2510,
+	contrast: (
+		50: #000000,
+		100: #000000,
+		200: #000000,
+		300: #000000,
+		400: #ffffff,
+		500: #ffffff,
+		600: #ffffff,
+		700: #ffffff,
+		800: #ffffff,
+		900: #ffffff,
+		A100: #000000,
+		A200: #000000,
+		A400: #000000,
+		A700: #000000
+	)
+);
+
+$accent-lima: (
+	50: #f4faeb,
+	100: #e6f3d4,
+	200: #cfe9ad,
+	300: #afd97d,
+	400: #8bc34a,
+	500: #73ac36,
+	600: #588828,
+	700: #446922,
+	800: #395420,
+	900: #32481f,
+	950: #18270c,
+	contrast: (
+		50: #000000,
+		100: #000000,
+		200: #000000,
+		300: #000000,
+		400: #000000,
+		500: #ffffff,
+		600: #ffffff,
+		700: #ffffff,
+		800: #ffffff,
+		900: #ffffff,
+		A100: #000000,
+		A200: #000000,
+		A400: #000000,
+		A700: #000000
+	)
+);
+
+$dark-theme: mat.define-dark-theme(
+	(
+		color: (
+			primary: mat.define-palette($primary-green, 400),
+			accent: mat.define-palette($accent-lima)
+		),
+		typography: mat.define-typography-config(),
+		density: 0
+	)
+);
+
+$light-theme: mat.define-light-theme(
+	(
+		color: (
+			primary: mat.define-palette($primary-green),
+			accent: mat.define-palette($accent-lima)
+		),
+		typography: mat.define-typography-config(),
+		density: 0
+	)
+);
+
+@include mat.all-component-themes($light-theme);
+
+$color-config: mat.get-color-config($light-theme);
+$primary-palette: map.get($color-config, 'primary');
+
+::-webkit-scrollbar {
+	width: 7px;
+}
+
+::-webkit-scrollbar-thumb {
+	background-color: rgba(128, 128, 128, 0.322);
+	border: 1px solid rgba(0, 0, 0, 0);
+	background-clip: padding-box;
+	border-radius: 9999px;
+}
+
+.mat-mdc-raised-button.mat-primary {
+	color: white !important;
+}
+
+.mat-mdc-raised-button.mat-accent {
+	color: white !important;
+}
+
+.mdc-checkbox__checkmark-path {
+	stroke: white !important;
+}
+
+.dark-theme {
+	@include mat.all-component-colors($dark-theme);
+}
+
+.http-info {
+	color: #0997bf;
+}
+
+.http-success {
+	color: #4cca4c;
+}
+
+.http-redirect {
+	color: #ad8106;
+}
+
+.http-client-server {
+	color: #fc0303;
+}
+
+.http-unofficial {
+	color: #8b28c4;
+}

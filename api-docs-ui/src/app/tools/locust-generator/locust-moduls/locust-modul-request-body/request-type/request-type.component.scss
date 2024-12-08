@@ -1,0 +1,30 @@
+.group {
+	display: flex;
+	height: fit-content;
+	align-content: center;
+}
+
+.element {
+	width: 15rem;
+	height: min-content;
+}
+
+.inputs {
+	width: 100%;
+	display: grid;
+	column-gap: 0.5rem;
+	grid-template-columns: repeat(auto-fill, 15rem);
+}
+
+.info {
+	display: flex;
+	flex-direction: column;
+	text-align: start;
+	align-items: center;
+	vertical-align: text-top;
+	min-width: 12rem;
+}
+
+h4 {
+	margin: 0.2rem;
+}

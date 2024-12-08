@@ -1,0 +1,42 @@
+$mat-toolbar-height: 3rem;
+
+$progress-bar-height: 5px;
+
+mat-toolbar {
+	max-height: $mat-toolbar-height;
+	height: $mat-toolbar-height;
+}
+
+.main-title {
+	padding-right: 0.5em;
+	display: flex;
+	align-items: center;
+	cursor: pointer;
+}
+
+.nav-logo {
+	height: 40px;
+	margin-right: 0.5rem;
+}
+
+.nav-items {
+	width: 100%;
+}
+
+.progress-bar {
+	width: 100%;
+	position: sticky;
+	top: 0;
+	// the height of the inner progress bar, to prevent reposition of the inputs
+	height: $progress-bar-height;
+}
+
+.mat-progress-bar {
+	height: $progress-bar-height;
+}
+
+.router-outlet-container {
+	position: relative;
+	height: calc(100vh - $mat-toolbar-height - $progress-bar-height);
+	overflow: auto;
+}

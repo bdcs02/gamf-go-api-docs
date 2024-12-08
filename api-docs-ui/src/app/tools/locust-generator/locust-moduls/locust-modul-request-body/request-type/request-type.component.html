@@ -1,0 +1,135 @@
+<div class="container" [formGroup]="typeForm">
+	<div class="group">
+		<div class="info element">
+			<h4>{{typeForm.value.name  + " ("+ typeForm.value.type  +")"}}</h4>
+			@if(typeForm.value.tag ) {
+				<mat-icon [matTooltip]="typeForm.value.tag ">info</mat-icon>
+			}
+		</div>
+
+		<div class="inputs">
+			<mat-form-field appearance="outline" class="element">
+				<mat-label>{{ 'locust.modul.dataStructure.valueType' | translate }}</mat-label>
+				<mat-select #type formControlName="valueType">
+				@if(!structs.includes(typeForm.value.name!)) {
+					@for (type of types; track type) {
+						<mat-option [value]="type">
+							{{type}}
+						</mat-option>
+					}
+				}
+				@else {
+					@for (type of customTypes; track type) {
+						<mat-option [value]="type">
+							{{type}}
+						</mat-option>
+					}
+				}
+				</mat-select>
+			</mat-form-field>
+
+			@if (type.value !== typeFormTypes.Null && type.value !== typeFormTypes.Faker && !customTypes.includes(type.value) && type.value !== "") {
+				@if(type.value !== 'Logikai típus' && type.value !== 'Random')
+				{
+					<mat-form-field appearance="outline" class="inputField element">
+						<mat-label>{{ 'locust.modul.dataStructure.value' | translate }}</mat-label>
+						<input formControlName="value" matInput id="value" />
+					</mat-form-field>
+				}
+				@else if(type.value === 'Logikai típus' ) {
+					<dropdown-list
+					class = "element"
+					[searchable]="true"
+					formControlName="value"
+					[items]="['True','False']"
+					[label]="'locust.modul.dataStructure.value' | translate"
+					></dropdown-list>
+				}
+				@else if(type.value === 'Random') {
+					<dropdown-list
+					class = "element"
+					[searchable]="true"
+					formControlName="value"
+					[items]="randoms"
+					[label]="'locust.modul.dataStructure.value' | translate"
+					[displayKey]="'name'"
+					[valueKey]="'name'"
+					></dropdown-list>
+
+					@if(typeForm.value.value === 'Szótár') {
+						<dropdown-list
+						class = "element"
+						[searchable]="true"
+						[items]="dictionaries.value"
+						formControlName="randomValueSetting"
+						[label]="'locust.modul.dataStructure.value' | translate"
+						[displayKey]="'name'"
+						[valueKey]="'name'"
+						></dropdown-list>
+					}
+					@if(typeForm.value.value === 'IP') {
+						<dropdown-list
+						class = "element"
+						[searchable]="true"
+						[items]="['ipv4','ipv6']"
+						formControlName="randomValueSetting"
+						[label]="'locust.modul.dataStructure.value' | translate"
+						></dropdown-list>
+					}
+					@if(typeForm.value.value === 'Regex') {
+						<mat-form-field appearance="outline" class="inputField element">
+							<mat-label>{{ 'locust.modul.dataStructure.value' | translate }}</mat-label>
+							<input formControlName="randomValueSetting" matInput id="value" />
+						</mat-form-field>
+					}
+
+				}
+			}
+
+			@if(type.value === typeFormTypes.Faker) {
+				<dropdown-list
+					class = "element"
+					[searchable]="true"
+					formControlName="fakerValue"
+					[items]="fakers"
+					[label]="'locust.modul.dataStructure.value' | translate"
+					[displayKey]="'name'"
+					[valueKey]="'method'"
+					(selectionChange)="update()"
+				></dropdown-list>
+
+				@for(option of getFaker().options; track option; let id= $index)
+				{
+					@if(typeForm.controls.fakerType.controls[id]){
+						<div [formGroup]="typeForm.controls.fakerType.controls[id]">
+							@if(option.type !== 'bool')
+							{
+								<mat-form-field appearance="outline" class="inputfield element">
+									<mat-label>{{ 'generator.options.' + option.name | translate }}</mat-label>
+									<input formControlName="value" matInput />
+								</mat-form-field>
+							}
+							@else{
+								<dropdown-list
+								class = "element"
+								[searchable]="true"
+								formControlName="value"
+								[items]="['True','False']"
+								[label]="'generator.options.' + option.name | translate"
+								></dropdown-list>
+							}
+						</div>
+					}
+				}
+			}
+
+			@if(typeForm.value.type === "slice") {
+				<mat-form-field appearance="outline" class="inputField element">
+					<mat-label>{{ 'locust.modul.dataStructure.length' | translate }}</mat-label>
+					<input formControlName="length" matInput id="length" />
+				</mat-form-field>
+			}
+
+		</div>
+	</div>
+</div>

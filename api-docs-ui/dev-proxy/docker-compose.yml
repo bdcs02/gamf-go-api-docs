@@ -1,0 +1,37 @@
+version: '3.8'
+services:
+    proxy:
+        image: nginx:latest
+        ports:
+            - 80:80
+            - 443:443
+        volumes:
+            - ./dev-nginx.conf:/etc/nginx/nginx.conf
+            - ./cert:/etc/ssl/certs
+    postgres:
+        image: postgres:15.6
+        container_name: postgres_db
+        volumes:
+            - postgres_data:/var/lib/postgresql/data
+        environment:
+            POSTGRES_DB: keycloak
+            POSTGRES_USER: keycloak
+            POSTGRES_PASSWORD: password
+    keycloak_web:
+        image: quay.io/keycloak/keycloak:24.0.2
+        container_name: keycloak_web
+        environment:
+            KEYCLOAK_ADMIN: admin
+            KEYCLOAK_ADMIN_PASSWORD: admin
+            KC_HTTPS_CERTIFICATE_FILE: /opt/keycloak/conf/server.crt.pem
+            KC_HTTPS_CERTIFICATE_KEY_FILE: /opt/keycloak/conf/server.key.pem
+        command: start-dev
+        ports:
+            - 8443:8443
+        volumes:
+            - "LOKÁLIS_HELY/server.crt.pem:/opt/keycloak/conf/server.crt.pem"
+            - "LOKÁLIS_HELY/server.key.pem:/opt/keycloak/conf/server.key.pem"
+
+
+volumes:
+    postgres_data:

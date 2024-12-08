@@ -1,0 +1,33 @@
+<div class="container">
+	<button type="button" mat-raised-button id="addRow" color="primary" (click)="addRow()">
+		{{ 'locust.file.new' | translate }}
+	</button>
+
+	@for (keyPairForm of formArray.controls; track keyPairForm; let i = $index) {
+		<div [formGroup]="keyPairForm">
+			<div id="inputFields">
+				<mat-form-field appearance="outline" class="inputField">
+					<mat-label>{{ 'common.key' | translate }}</mat-label>
+					<input matInput formControlName="key" id="key-{{ i }}" />
+				</mat-form-field>
+					<div class="inputField">
+						<div class="file-upload">
+							<input type="file" (change)="onFileSelected($event, i)" formControlName="value" id="selectedFile-{{i}}" style="display: none;" />
+							<button class="file-button" id="file-upload-{{ i }}" (click)="openFileDialog(i)">Fájl kiválasztása</button>
+							<label class="file-label" for="file-upload-{{ i }}">{{this.getFilename(i)}}</label>
+						</div>
+					</div>
+				<button
+					mat-icon-button
+					preventDoubleClick
+					id="delete"
+					(click)="deleteRow(i)"
+					[matTooltip]="'common.delete' | translate"
+					[matTooltipShowDelay]="500"
+				>
+					<mat-icon>delete</mat-icon>
+				</button>
+			</div>
+		</div>
+	}
+</div>

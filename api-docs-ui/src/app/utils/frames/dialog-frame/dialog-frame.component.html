@@ -1,0 +1,8 @@
+<h1 mat-dialog-title>{{ name }}</h1>
+<div mat-dialog-content>
+	<ng-content></ng-content>
+</div>
+<div mat-dialog-actions>
+	<button mat-button id="dialog-frame-confirm" [disabled]="confirmDisabled" (click)="onConfirmClicked()">{{ 'common.save' | translate }}</button>
+	<button mat-button id="dialog-frame-cancel" (click)="onCancelClicked()">{{ 'common.cancel' | translate }}</button>
+</div>

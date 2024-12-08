@@ -1,0 +1,7 @@
+<div class="table-container">
+	<simple-table [hidden]="!dataSource || dataSource.data.length === 0" [config]="config" [dataSource]="dataSource" [tableName]="'navigation.loadRequest' | translate" ></simple-table>
+</div>
+<div [hidden]="dataSource && dataSource.data.length > 0">
+	<h3>{{'navigation.loadRequest' | translate}}</h3>
+	<h4>{{'table.tableDataNotFound' | translate}}</h4>
+</div>

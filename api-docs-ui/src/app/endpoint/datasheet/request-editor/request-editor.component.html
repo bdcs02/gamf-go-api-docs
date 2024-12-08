@@ -1,0 +1,27 @@
+<div class="tab-container">
+	<form [formGroup]="formGroup">
+		<h3>{{ 'requestBody.title' | translate }}</h3>
+
+		<div class="body-selector">
+			<dropdown-list
+				#requestBodyTypeList
+				formControlName="type"
+				[items]="requestBodyTypes"
+				[label]="'requestBody.type' | translate"
+			></dropdown-list>
+		</div>
+
+		@switch (formGroup.controls.type.value) {
+			@case ('requestBodyType.noType' | translate) {}
+			@case ('requestBodyType.json' | translate) {
+				<monaco-editor [formGroup]="formGroup" [language]="'vars'" formControllName="bodyString"></monaco-editor>
+			}
+			@case ('requestBodyType.text' | translate) {
+				<monaco-editor [formGroup]="formGroup" formControllName="bodyString" [language]="'vars'"></monaco-editor>
+			}
+			@case ('requestBodyType.formData' | translate) {
+				<form-data [formGroup]="formGroup" editorType="formData" formArrayName="formFileData"></form-data>
+			}
+		}
+	</form>
+</div>

@@ -1,0 +1,13 @@
+<div class="header-buttons" #buttonFrame (cdkObserveContent)="onContentChange()">
+	<ng-content #buttonContent></ng-content>
+</div>
+<ng-container *ngIf="screenWidth < 960 && menuButtons.length > 0">
+	<button id="button-frame-menu" class="primary-text-color" mat-icon-button [matMenuTriggerFor]="menu">
+		<mat-icon>{{ icon }}</mat-icon>
+	</button>
+	<mat-menu #menu="matMenu">
+		<button mat-menu-item *ngFor="let button of menuButtons" (click)="button.clickEvent()" [disabled]="button.disabled">
+			{{ button.name }}
+		</button>
+	</mat-menu>
+</ng-container>

@@ -1,0 +1,28 @@
+<div class="datasheet-base fixed-template-rows">
+	<div class="datasheet-title text-padding primary-color">{{ label }}</div>
+	<div class="datasheet-value text-padding">
+		<mat-icon *ngIf="icon" class="datasheet-icon">{{ icon }}</mat-icon>
+		<a
+			*ngIf="!disabled && value"
+			class="line-clamp-{{ 1 }}"
+			[id]="'link-id-' + value"
+			[routerLink]="link"
+			[matTooltip]="link"
+			[matTooltipShowDelay]="500"
+		>
+			{{ value }}
+		</a>
+		<div *ngIf="disabled">{{ value }}</div>
+	</div>
+	<button
+		*ngIf="hasCopy && !disabled"
+		class="datasheet-copy"
+		mat-icon-button
+		(click)="copyValue()"
+		[matTooltipShowDelay]="500"
+		[matTooltip]="'common.copyToClipBoard' | translate"
+	>
+		<mat-icon>content_copy</mat-icon>
+	</button>
+</div>
+<mat-divider></mat-divider>

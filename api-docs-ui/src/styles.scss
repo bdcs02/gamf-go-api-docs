@@ -1,0 +1,142 @@
+@import "~jsoneditor/dist/jsoneditor.min.css";
+@import url('./styles/theme.scss');
+@import url('./styles/dark-theme.scss');
+
+html,
+body {
+	height: 100%;
+}
+body {
+	margin: 0;
+	font-family: Roboto, 'Helvetica Neue', sans-serif;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+.border-radius {
+	border-radius: 2px;
+}
+
+.frame {
+	margin: 1.2rem 2rem;
+}
+
+.frame-header {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	padding-bottom: 0.8rem;
+}
+
+.frame-header-title {
+	font-size: 1.4rem;
+	font-weight: 600;
+}
+
+.frame-header-content {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+}
+
+.frame-header-buttons {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	grid-gap: 1rem;
+}
+
+.form-content {
+	padding-top: 1.5rem;
+}
+
+.datasheet-content {
+	display: flex;
+	flex-direction: column;
+	gap: 1.5rem;
+}
+
+.table-title {
+	font-size: 1.2rem;
+	font-weight: 600;
+	padding-top: 0.8rem;
+	padding-bottom: 0.8rem;
+}
+
+.form-grid {
+	display: grid;
+	grid-gap: 1rem;
+	grid-template-columns: repeat(3, 1fr);
+}
+
+.left-column {
+	grid-column: 1 / span 1;
+}
+
+.middle-column {
+	grid-column: span 1;
+}
+
+.right-column {
+	grid-column: span 1;
+}
+
+.dialog-form {
+	padding: 1.4rem;
+}
+
+.dialog-header-title {
+	font-size: 1.2rem;
+	font-weight: 400;
+}
+
+.footer-buttons {
+	display: flex;
+	gap: 1rem;
+	justify-content: flex-end;
+	align-items: center;
+	padding-top: 1rem;
+}
+
+:root {
+	--ngx-json-null-bg: #ffffff;
+	--ngx-json-null: #ff6b6b;
+}
+
+@for $line-count from 1 through 10 {
+	.line-clamp-#{$line-count} {
+		display: -webkit-box;
+		text-overflow: ellipsis;
+		overflow: hidden;
+		-webkit-line-clamp: $line-count;
+		-webkit-box-orient: vertical;
+		word-break: break-word;
+	}
+}
+
+.user-select-none {
+	user-select: none;
+}
+
+.mat-mdc-form-field > *:first-of-type {
+	background-color: white;
+}
+
+.mdc-evolution-chip-set__chips {
+	max-width: 100% !important;
+}
+
+.mat-mdc-standard-chip .mdc-evolution-chip__cell--primary,
+.mat-mdc-standard-chip .mdc-evolution-chip__action--primary,
+.mat-mdc-standard-chip .mat-mdc-chip-action-label {
+	overflow: hidden !important;
+}
+
+.mdc-evolution-chip__text-label {
+	white-space: nowrap;
+	user-select: none;
+	text-overflow: ellipsis;
+	overflow: hidden;
+}

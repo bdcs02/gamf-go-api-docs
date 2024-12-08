@@ -1,0 +1,39 @@
+<div class="date-filter-container">
+	<mat-button-toggle-group [(ngModel)]="selectedType">
+		<mat-button-toggle *ngFor="let type of dateFilterTypes" [value]="type" id="table-date-filter-{{ type }}">
+			{{ 'table.dateFilter.' + type | translate }}
+		</mat-button-toggle>
+	</mat-button-toggle-group>
+
+	<ng-container [ngSwitch]="selectedType">
+		<mat-form-field *ngSwitchCase="'date'" id="filter-date" class="form-field" appearance="outline">
+			<mat-label>{{ 'table.filterValue' | translate }}</mat-label>
+			<input
+				matInput
+				placeholder="{{ 'table.dateFilter.date' | translate }}"
+				[matDatepicker]="picker"
+				[(ngModel)]="value"
+				[ngModelOptions]="{ standalone: true }"
+				(dateInput)="dateInput()"
+			/>
+			<mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+			<mat-datepicker #picker></mat-datepicker>
+		</mat-form-field>
+
+		<mat-form-field *ngSwitchCase="'date-range'" id="filter-date" class="form-field" appearance="outline">
+			<mat-date-range-input [rangePicker]="picker">
+				<input
+					matStartDate
+					placeholder="{{ 'table.dateFilter.startDate' | translate }}"
+					[(ngModel)]="startDate"
+					(dateInput)="dateRangeInput()"
+				/>
+				<input matEndDate placeholder="{{ 'table.dateFilter.endDate' | translate }}" [(ngModel)]="endDate" (dateInput)="dateRangeInput()" />
+			</mat-date-range-input>
+
+			<mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+			<mat-date-range-picker #picker></mat-date-range-picker>
+		</mat-form-field>
+		<div *ngSwitchDefault></div>
+	</ng-container>
+</div>

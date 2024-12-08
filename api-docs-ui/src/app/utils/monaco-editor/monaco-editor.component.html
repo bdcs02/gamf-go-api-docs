@@ -1,0 +1,7 @@
+@if (formGroup) {
+	<form [formGroup]="formGroup">
+		<nu-monaco-editor [autoFormat]="true" [options]="editorOptions" [formControlName]="formControllName" class="monaco"></nu-monaco-editor>
+	</form>
+} @else {
+	<nu-monaco-editor [autoFormat]="true" [(ngModel)]="content" [options]="editorOptions" class="monaco"></nu-monaco-editor>
+}

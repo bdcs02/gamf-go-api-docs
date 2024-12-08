@@ -1,0 +1,65 @@
+:host,
+.datasheet-base {
+	width: 100%;
+	min-height: 55px;
+	min-width: 0;
+}
+
+.datasheet-base {
+	display: grid;
+	grid-template-columns: 1fr auto;
+	grid-template-rows: 1.5rem 1fr;
+	grid-template-areas:
+		'title copy'
+		'value copy';
+	background-color: whitesmoke;
+	height: 100%;
+}
+
+.fixed-template-rows {
+	grid-template-rows: 1.5rem 1.938rem;
+}
+
+.datasheet-title {
+	grid-area: title;
+	align-self: center;
+	font-size: 12px;
+	min-height: 0;
+	min-width: 0;
+}
+
+.datasheet-value {
+	position: relative;
+	grid-area: value;
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+	min-width: 0;
+	font-size: 16px;
+
+	.datasheet-icon {
+		scale: 0.85;
+		flex-shrink: 0;
+	}
+}
+
+.datasheet-copy {
+	scale: 0.85;
+	margin-top: 2px;
+	grid-area: copy;
+	justify-self: center;
+	align-self: center;
+}
+
+.text-padding {
+	padding: 0 1rem;
+}
+
+.empty::after {
+	content: '';
+	position: absolute;
+	top: 60%;
+	width: 5rem;
+	height: 1px;
+	background-color: currentColor;
+}

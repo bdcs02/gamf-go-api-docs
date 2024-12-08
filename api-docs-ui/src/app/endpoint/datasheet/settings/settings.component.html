@@ -1,0 +1,18 @@
+<div class="tab-container">
+	<form class="form-content" [formGroup]="formGroup" content novalidate>
+		<h3>{{ 'generator.title' | translate }}</h3>
+		<div class="group-container">
+			<text-input [label]="'generator.seed' | translate" formControlName="dgSeed"></text-input>
+			<div class="group">
+				<dropdown-list
+					class="wide"
+					[searchable]="true"
+					#requestBodyTypeList
+					formControlName="locale"
+					[items]="locales"
+					[label]="'locust.general.locale' | translate"
+				></dropdown-list>
+			</div>
+		</div>
+	</form>
+</div>

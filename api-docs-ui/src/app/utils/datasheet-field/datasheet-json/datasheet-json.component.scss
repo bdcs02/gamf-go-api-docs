@@ -1,0 +1,19 @@
+.datasheet-value {
+	overflow: auto;
+	align-items: flex-start;
+}
+
+.datasheet-base {
+	grid-template-areas:
+		'title copy'
+		'value value';
+	row-gap: 1rem;
+}
+
+ngx-json-viewer {
+	max-height: 100%;
+}
+
+.datasheet-copy {
+	margin-top: 20px;
+}

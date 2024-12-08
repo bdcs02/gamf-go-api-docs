@@ -1,0 +1,15 @@
+<mat-menu #childMenu="matMenu" [overlapTrigger]="false">
+	<span *ngFor="let item of items">
+		<ng-container *ngIf="item.menu">
+			<button mat-menu-item (click)="navigate(item.route)" [id]="item.id" [matMenuTriggerFor]="menu.childMenu">
+				{{ item.translateKey | translate }}
+			</button>
+			<top-menu-item #menu [items]="item.children"></top-menu-item>
+		</ng-container>
+		<ng-container *ngIf="!item.menu">
+			<button mat-menu-item (click)="navigate(item.route)" [id]="item.id">
+				{{ item.translateKey | translate }}
+			</button>
+		</ng-container>
+	</span>
+</mat-menu>

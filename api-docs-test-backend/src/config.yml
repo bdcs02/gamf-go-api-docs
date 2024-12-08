@@ -1,0 +1,35 @@
+server:
+  port: 8080
+
+cookie:
+  secure: false
+  expire: 15
+  path: "/"
+
+log:
+  level: "DEBUG"
+
+apidoc:
+  appname: "API-Docs-Test-Backend"
+  enabled: true
+  enableEmbeddedFile: true
+  useProxy: true
+
+keycloak:
+  hostname: https://SAJÁT_IP:8443
+  debug: false
+  realm: master
+  clientId: test-backend
+  secret: SECRET_TOKEN
+  userGroup: tester
+  sessionTtl: 600
+  insecureSkipVerify: true
+  certPath: /cert/keycloak.crt
+  keyPath: /cert/keycloak.key
+  frontend:
+    clientId: test-frontend
+
+redis:
+  enabled: true
+  url: localhost:6379
+  password: ""

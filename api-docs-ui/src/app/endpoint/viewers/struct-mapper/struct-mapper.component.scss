@@ -1,0 +1,18 @@
+.mat-tree-node {
+	min-height: 1.2em !important;
+	height: 2.1rem;
+}
+
+.nodeButton {
+	width: 48px;
+	display: flex;
+	justify-content: center;
+}
+
+::ng-deep .tooltip .mdc-tooltip__surface {
+	max-width: unset !important;
+}
+
+.name {
+	align-items: center;
+}

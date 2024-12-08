@@ -1,0 +1,25 @@
+<div class="main-container">
+	<div class="dg-options">
+        <mat-nav-list class="dg-nav-list">
+
+            <mat-tree [dataSource]="dataSource" [treeControl]="treeControl">
+                <mat-tree-node class="dg-tree-node" *matTreeNodeDef="let node">
+                    <mat-list-item [class]="node.name === activeNode ? 'active-nav-item' : ''" role="listitem" id="node">
+                    <div  class="node" (click)="getNode(node)">
+                            <p>{{node.name}}</p>
+                        </div>
+                    </mat-list-item>
+                    </mat-tree-node>
+				<mat-tree-node class="dg-tree-node" *matTreeNodeDef="let node; when: hasChild" matTreeNodeToggle>
+                    <button mat-icon-button matTreeNodeToggle [attr.aria-label]="'Toggle ' + node.name">
+						<mat-icon class="mat-icon-rtl-mirror">
+                            {{ treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right' }}
+						</mat-icon>
+					</button>
+                    <p>{{node.name}}</p>
+				</mat-tree-node>
+			</mat-tree>
+        </mat-nav-list>
+	</div>
+    <data-generator-content [selectedNode]="selectedNode" ></data-generator-content>
+</div>

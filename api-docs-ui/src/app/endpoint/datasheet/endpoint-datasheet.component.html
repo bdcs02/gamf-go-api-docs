@@ -1,0 +1,124 @@
+<mat-drawer-container class="example-container">
+	<mat-drawer mode="side" opened class="sidenav">
+		<div class="title-wrapper">
+			@if (endpoint) {
+				<div>
+					<method-chip [text]="endpoint.method"></method-chip>
+					<method-chip [backgroundColor]="categoryBadgeColor" [text]="endpoint.category"></method-chip>
+				</div>
+			}
+			<div>
+				<button mat-icon-button [matMenuTriggerFor]="menus"><mat-icon>more_vert</mat-icon></button>
+				<mat-menu #menus="matMenu">
+					@for (menu of menuArray; track menu.id) {
+						@if (menu.id !== 'nav-import-request' && menu.id !== 'nav-load-request') {
+							<button
+								mat-menu-item
+								[id]="menu.id"
+								[routerLink]="menu.route"
+								routerLinkActive="active-route"
+								(click)="selectMenuItem(menu.id)"
+							>
+								{{ menu.translateKey | translate }}
+							</button>
+						} @else if (menu.id === 'nav-load-request') {
+							<button
+								mat-menu-item
+								[id]="menu.id"
+								[routerLink]="menu.route"
+								routerLinkActive="active-route"
+								(click)="selectMenuItem(menu.id)"
+								[disabled]="rxDocs.length === 0"
+							>
+								{{ menu.translateKey | translate }}
+							</button>
+						} @else {
+							<button
+								mat-menu-item
+								[id]="menu.id"
+								[routerLink]="menu.route"
+								routerLinkActive="active-route"
+								(click)="selectMenuItem(menu.id)"
+							>
+								<input #fileInput type="file" accept=".json" (change)="openFile($event)" />
+								{{ menu.translateKey | translate }}
+							</button>
+						}
+					}
+				</mat-menu>
+			</div>
+		</div>
+		@if (endpoint) {
+			<div class="path-wrapper">{{ endpoint.path }}</div>
+		} @else {
+			<p>{{ 'endpoint.getEndpointError' | translate }}</p>
+		}
+		<div class="form-wrapper">
+			<form [formGroup]="endpointForm">
+				<mat-form-field appearance="outline" class="url-input">
+					<mat-label>Url</mat-label>
+					<textarea matInput formControlName="url"></textarea>
+				</mat-form-field>
+			</form>
+			<button mat-raised-button class="send-request-button" color="accent" (click)="sendRequest()">
+				{{ 'navigation.sendRequest' | translate }}
+			</button>
+		</div>
+
+		<div class="nav-list">
+			<div class="nav-items">
+				@for (nav of navArray; track nav.id) {
+					<mat-list-item role="listitem">
+						@if (nav.id == 'nav-response') {
+							<button
+								class="menu-button"
+								mat-button
+								[id]="nav.id"
+								[class]="navItemToShow === nav.id ? 'active-nav-item' : ''"
+								(click)="selectNavItem(nav.id)"
+								[disabled]="!response.getValue()"
+							>
+								{{ nav.translateKey | translate }}
+							</button>
+						} @else {
+							<button
+								class="menu-button"
+								mat-button
+								[id]="nav.id"
+								[class]="navItemToShow === nav.id ? 'active-nav-item' : ''"
+								(click)="selectNavItem(nav.id)"
+							>
+								{{ nav.translateKey | translate }}
+							</button>
+						}
+					</mat-list-item>
+				}
+			</div>
+		</div>
+	</mat-drawer>
+	<mat-drawer-content>
+		@switch (navItemToShow) {
+			@case ('nav-details') {
+				<endpoint-info [endpoint]="endpoint" [displayDetailsButton]="false"></endpoint-info>
+			}
+			@case ('nav-request-body') {
+				<request-editor [formGroup]="endpointForm.controls.requestBody" [endpoint]="endpoint"></request-editor>
+			}
+			@case ('nav-response') {
+				<endpoint-response [response]="response" [endpoint]="endpoint" [responseTime]="responseTime"></endpoint-response>
+			}
+			@case ('nav-authorization') {
+				<authorization [formGroup]="endpointForm.controls.authorization"></authorization>
+			}
+			@case ('nav-header-list') {
+				<header-list [formGroup]="endpointForm"></header-list>
+			}
+			@case ('nav-url-parameters') {
+				<url-parameters [formGroup]="endpointForm"></url-parameters>
+			}
+			@case ('nav-variables') {
+				<variables [formGroup]="endpointForm.controls.variables"></variables>
+			}
+		}
+	</mat-drawer-content>
+</mat-drawer-container>

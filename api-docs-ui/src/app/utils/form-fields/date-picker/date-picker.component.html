@@ -1,0 +1,12 @@
+<mat-form-field [appearance]="appearance">
+	<mat-label>{{ label }}</mat-label>
+	<input matInput [id]="controlName + '-input'" [matDatepicker]="picker" [formControl]="formControl" [min]="min"
+		[max]="max" (dateInput)="onInputChange()" />
+	<mat-datepicker-toggle [ngClass]="{ error: formControl.errors && formControl.touched }" matSuffix
+		[for]="picker"></mat-datepicker-toggle>
+	<mat-datepicker #picker></mat-datepicker>
+	<mat-error>
+		<form-errors [control]="formControl"></form-errors>
+		<ng-content select="[errors]"></ng-content>
+	</mat-error>
+</mat-form-field>

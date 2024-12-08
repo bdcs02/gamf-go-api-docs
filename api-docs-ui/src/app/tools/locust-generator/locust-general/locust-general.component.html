@@ -1,0 +1,52 @@
+<div class="container" [formGroup]="formGroup">
+	<div class="group">
+		<mat-checkbox class="headless" formControlName="headless">{{ 'locust.general.headless' | translate }}</mat-checkbox>
+	</div>
+	<div class="group">
+		<mat-form-field appearance="outline" class="inputField wide">
+			<mat-label>{{ 'locust.general.host' | translate }}</mat-label>
+			<input matInput formControlName="host" id="host" />
+		</mat-form-field>
+
+		<mat-form-field appearance="outline" class="inputField element">
+			<mat-label>{{ 'locust.general.userNumber' | translate }}</mat-label>
+			<input matInput formControlName="userNumber" id="userNumber" />
+		</mat-form-field>
+
+		<mat-form-field appearance="outline" class="inputField element">
+			<mat-label>{{ 'locust.general.spawnRate' | translate }}</mat-label>
+			<input matInput formControlName="spawnRate" id="spawnRate" />
+		</mat-form-field>
+	</div>
+	<div class="group">
+		<dropdown-list
+			class="wide"
+			#requestBodyTypeList
+			[searchable]="true"
+			formControlName="logLevel"
+			[items]="logLevels"
+			[label]="'locust.general.logLevel' | translate"
+		></dropdown-list>
+
+		<mat-form-field appearance="outline" class="inputField element">
+			<mat-label> {{ 'locust.general.runTime' | translate }}</mat-label>
+			<input matInput formControlName="runTime" id="runTime" />
+		</mat-form-field>
+
+		<mat-form-field appearance="outline" class="inputField element">
+			<mat-label> {{ 'locust.general.seed' | translate }}</mat-label>
+			<input matInput formControlName="seed" id="seed" />
+		</mat-form-field>
+	</div>
+
+	<div class="group">
+		<dropdown-list
+			class="wide"
+			[searchable]="true"
+			#requestBodyTypeList
+			formControlName="locale"
+			[items]="locales"
+			[label]="'locust.general.locale' | translate"
+		></dropdown-list>
+	</div>
+</div>

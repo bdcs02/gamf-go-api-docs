@@ -1,0 +1,113 @@
+<mat-tree [dataSource]="dataSource" [treeControl]="treeControl">
+	<mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding>
+		<button mat-icon-button disabled></button>
+
+		@if (node.data.description) {
+			<span class="name" [matTooltip]="node.data.tag" matTooltipPosition="after" matTooltipClass="tooltip">{{ node.name }} </span>
+			@if (node.data.tag) {
+				<mat-icon> bookmark </mat-icon>
+			}
+			@if (node.data.required) {
+				*
+			}
+			( {{ node.data.type }} )
+			@if (node.data.minimum || node.data.maximum) {
+				[{{ node.data.minimum }},{{ node.data.maximum }}]
+			}
+			: {{ node.data.description }}
+		} @else {
+			@switch (node.data.kind) {
+				@case ('map') {
+					{{ node.name }}
+					@if (node.data.required) {
+						*
+					}
+					( {{ node.data.kind }}[{{ node.data.key.kind }}]{{ node.data.type }} )
+					@if (node.data.minimum || node.data.maximum) {
+						[{{ node.data.minimum }},{{ node.data.maximum }}]
+					}
+				}
+				@case ('ptr') {
+					{{ node.name }}
+					@if (node.data.required) {
+						*
+					}
+					( *{{ node.data.type }} )
+					@if (node.data.minimum || node.data.maximum) {
+						[{{ node.data.minimum }},{{ node.data.maximum }}]
+					}
+				}
+				@case ('slice') {
+					{{ node.name }}
+					@if (node.data.required) {
+						*
+					}
+					( []{{ node.data.type }} )
+					@if (node.data.minimum || node.data.maximum) {
+						[{{ node.data.minimum }},{{ node.data.maximum }}]
+					}
+				}
+				@default {
+					{{ node.name }}
+					@if (node.data.required) {
+						*
+					}
+					( {{ node.data.type }} )
+					@if (node.data.minimum || node.data.maximum) {
+						[{{ node.data.minimum }},{{ node.data.maximum }}]
+					}
+				}
+			}
+		}
+	</mat-tree-node>
+	<mat-tree-node *matTreeNodeDef="let node; when: hasChild" matTreeNodePadding matTreeNodeToggle>
+		<mat-icon class="nodeButton">
+			{{ treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right' }}
+		</mat-icon>
+		@switch (node.data.kind) {
+			@case ('map') {
+				<span [matTooltip]="node.data.tag">{{ node.name }}</span>
+				@if (node.data.tag) {
+					<mat-icon> bookmark </mat-icon>
+				}
+				@if (node.data.required) {
+					*
+				}
+				( {{ node.data.kind }}[{{ node.data.key.kind }}]{{ node.data.type }} )
+				@if (node.data.minimum || node.data.maximum) {
+					[{{ node.data.minimum }},{{ node.data.maximum }}]
+				}
+			}
+			@case ('ptr') {
+				{{ node.name }}
+				@if (node.data.required) {
+					*
+				}
+				( *{{ node.data.type }} )
+				@if (node.data.minimum || node.data.maximum) {
+					[{{ node.data.minimum }},{{ node.data.maximum }}]
+				}
+			}
+			@case ('slice') {
+				{{ node.name }}
+				@if (node.data.required) {
+					*
+				}
+				( []{{ node.data.type }} )
+				@if (node.data.minimum || node.data.maximum) {
+					[{{ node.data.minimum }},{{ node.data.maximum }}]
+				}
+			}
+			@default {
+				{{ node.name }}
+				@if (node.data.required) {
+					*
+				}
+				( {{ node.data.type }} )
+				@if (node.data.minimum || node.data.maximum) {
+					[{{ node.data.minimum }},{{ node.data.maximum }}]
+				}
+			}
+		}
+	</mat-tree-node>
+</mat-tree>

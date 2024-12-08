@@ -1,0 +1,30 @@
+<div class="frame-container">
+	<div class="header">
+		<div class="header-title">
+			<ng-content select="[logo]"></ng-content>
+			<mat-chip *ngIf="chip" class="header-chip">{{ chip }}</mat-chip>
+			<span class="header-title-text">{{ title }}</span>
+			<ng-content select="[header-title]"></ng-content>
+		</div>
+		<div class="header-buttons">
+			<button-frame>
+				<ng-content select="[header-buttons]"></ng-content>
+			</button-frame>
+			<button
+				*ngIf="backButtonVisible"
+				id="navigate-back"
+				mat-icon-button
+				class="mat-elevation-z2 back-button accent-text-color accent-background-color-on-hover"
+				(click)="navigateBack()"
+				preventDoubleClickOffline
+				[matTooltip]="'common.back' | translate"
+			>
+				<mat-icon>arrow_back_ios</mat-icon>
+			</button>
+		</div>
+	</div>
+	<ng-content select="[content]"></ng-content>
+	<div #footer class="footer-buttons">
+		<ng-content select="[footer-buttons]"></ng-content>
+	</div>
+</div>

@@ -1,0 +1,50 @@
+#locust-save {
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	margin-bottom: 1rem;
+	margin-right: 2rem;
+	z-index: 999;
+}
+
+.container {
+	display: block;
+}
+
+.header {
+	display: flex;
+	flex-direction: row;
+	height: 5rem;
+	justify-content: space-between;
+	align-content: center;
+	margin: 0.3rem;
+}
+
+.title {
+	text-align: center;
+	align-content: center;
+}
+
+.actions {
+	align-content: center;
+}
+
+.action {
+	padding: 0.5rem;
+	margin-left: 1rem;
+}
+
+input[type='file'] {
+	display: none;
+}
+
+.dirty {
+	text-align: center;
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	margin-bottom: 1rem;
+	margin-left: 2rem;
+	font-weight: 600;
+	z-index: 999;
+}

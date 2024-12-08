@@ -1,0 +1,354 @@
+{
+	"common": {
+		"title": "API DOC UI",
+		"back": "Vissza",
+		"version": "Verzió",
+		"edit": "Szerkesztés",
+		"save": "Mentés",
+		"load": "Betöltés",
+		"name": "Név",
+		"date": "Dátum",
+		"cancel": "Mégse",
+		"ok": "Rendben",
+		"choose": "Kiválasztás",
+		"open": "Megnyitás",
+		"create": "Létrehozás",
+		"close": "Bezárás",
+		"next": "Tovább",
+		"delete": "Törlés",
+		"send": "Küldés",
+		"emailAddress": "E-mail cím",
+		"confirm": "Igen",
+		"export": "Export",
+		"import": "Import",
+		"globalVariables": "Globális változók",
+		"key": "Kulcs",
+		"value": "Érték",
+		"other":"Egyéb",
+		"datasheet": "Adatlap",
+		"copyToClipBoard": "Vágólapra másolás",
+		"activation": "Aktiválás",
+		"inactivation": "Inaktiválás",
+		"active": "Aktív",
+		"inactive": "Inaktív",
+		"state": "Státusz",
+		"search": "Keresés",
+		"browse": "Tallózás",
+		"file": "Fájl kiválasztása",
+		"noFile": "Nincs fájl kiválasztva",
+		"login": "Bejelentkezés",
+		"logout": "Kijelentkezés",
+		"invalidContentType": "Nem támogatott Content-Type típus.",
+		"notification": {
+			"saveSuccess": "A mentés sikeres!",
+			"saveError": "A mentés sikertelen!",
+			"fileDownloadError": "A fájl letöltése nem sikerült!",
+			"deleteSuccess": "A törlés sikeres!",
+			"deleteError": "A törlés sikertelen!",
+			"globalVariablesSaveDetails": "A változók sikeresen mentésre kerültek!",
+			"resultSaveDetails": "A(z) {{url}} beállítás elmentve."
+		},
+		"dialog": {
+			"close": {
+				"title": "Szerkesztés félbehagyása!",
+				"description": "Az oldal mentetlen változásokat tartalmaz. Biztosan elhagyja az oldalt?"
+			}
+		},
+		"errors": {
+			"invalidValue": "Az értéknek {{ minlength }} és {{ maxlength }} között kell lennie!",
+			"minLength": "Minimum {{ minlength }} karakter!",
+			"maxLength": "Maximum {{ maxlength }} karakter!",
+			"phoneNumber": "Érvénytelen telefonszám!",
+			"emailAddress": "Érvénytelen e-mail cím!",
+			"noWhitespaceOnly": "Csak szóközzel nem tölthető ki!",
+			"required": "A mező kitöltése kötelező!",
+			"min": "Az értéknek {{ min }} felett kell lennie!",
+			"max": "Az értéknek {{ max }} alatt kell lennie!",
+			"hungarianMobilePhoneNumber": "Érvénytelen magyar mobiltelefonszám!",
+			"keycloakLoad": "Hiba történt az API adatok betöltése során!"
+		},
+		"notFound": "A keresett oldal nem található!"
+	},
+	"navigation": {
+		"keycloakLogin": "Keycloak bejelentkezés",
+		"curl": "Curl generálás",
+		"saveRequest": "Kérés mentése",
+		"sendRequest": "Kérés küldése",
+		"loadRequest": "Kérés betöltése",
+		"exportRequest": "Kérés export",
+		"importRequest": "Kérés import",
+		"savedRequests": "Mentett kérések",
+		"settings": "Beállítások",
+		"details": "Részletek",
+		"requestBody": "Request body",
+		"authorization": "Authorizáció",
+		"headerList": "Header lista",
+		"urlParameters": "URL paraméterek",
+		"variables": "Változók",
+		"response": "Response",
+
+		"endpoints": "Végpontok",
+		"tools":"Eszközök",
+		"locust": {
+			"generator":"Locust generátor",
+			"general":"Általános",
+			"moduls": "Modulok",
+			"authorization":"Authorizáció",
+			"files":"Fájlok",
+			"dictionaries":"Szótárak"
+		}
+	},
+	"table": {
+		"filter": "Szűrés",
+		"selectFilter": "Szűrő kiválasztása",
+		"filterValue": "Szűrőérték",
+		"selectFilterValue": "Válasszon szűrési feltételt!",
+		"actions": "Műveletek",
+		"selectSort": "Rendezés kiválasztása",
+		"dateFilter": {
+			"date": "Dátum",
+			"dateRange": "Intervallum",
+			"startDate": "Kezdődátum",
+			"endDate": "Végdátum"
+		},
+		"tableDataNotFound": "Nem található megjeleníthető adat."
+	},
+	"sort": {
+		"asc": "Növekvő",
+		"desc": "Csökkenő"
+	},
+	"selectionList": {
+		"filter": "Keresés..."
+	},
+	"pagination": {
+		"itemsPerPage": "Oldalanként: ",
+		"nextPage": "Következő oldal",
+		"previousPage": "Előző oldal",
+		"firstPage": "Első oldal",
+		"lastPage": "Utolsó oldal"
+	},
+	"endpoint": {
+		"request": "Request",
+		"response": "Response",
+		"responseBody": {
+			"responseBodyTitle": "Response body",
+			"headerName": "Header név",
+			"headersTitle": "Response headers",
+			"headerValue": "Érték",
+			"state": "Státusz:",
+			"responseTime": "Időtartam: {{ responseTime }}ms",
+			"size": "Méret:",
+			"date": "Dátum:",
+			"null": "Null",
+			"download": "Response letöltése"
+		},
+		"getEndpointError": "A végpont metódusa és az útvonal betöltése sikertelen.",
+		"list": {
+			"keycloakLogin": "Keycloak bejelentkezés"
+		},
+		"datasheet": {
+			"info": "Információ",
+			"examples": "Példák",
+			"details": "Részletek",
+			"structure": "Adatszerkezet",
+			"noRequestStructure": "Nem tartozik adatszerkezet a request-hez.",
+			"noResponseStructure": "Nem tartozik adatszerkezet a response-hoz."
+		},
+		"authorization": {
+			"bearerToken": "Bearer token",
+			"title": "Authorizáció",
+			"type": "Authorizáció típusa"
+		}
+	},
+	"keyValueEditor": {
+		"header": {
+			"new": "Új header",
+			"key": "Header név",
+			"value": "Header érték"
+		},
+		"parameter": {
+			"new": "Új paraméter",
+			"key": "Paraméter név",
+			"value": "Paraméter érték"
+		},
+		"variable": {
+			"new": "Új változó",
+			"key": "Változó név",
+			"value": "Változó érték",
+			"checkbox": "Változók engedélyezése"
+		},
+		"formData": {
+			"type": "Form Data típusa",
+			"new": "Új paraméter",
+			"key": "Kulcs",
+			"value": "Érték",
+			"placement":"Elhelyezkedés"
+		}
+	},
+	"data": {
+		"request": {
+			"deleteRequestTitle": "Kérés törlése",
+			"deleteRequestContent": "Ön egy kérés törlésére készül! Biztosan törli a(z) {{ request }} kérést?",
+			"requestNotFound": "Nem található kérés."
+		},
+		"globals": {
+			"globalsNotFound": "Nem található globális változó.",
+			"confirmDialogTitle": "Megerősítés",
+			"onCancelDialogMessage": "Biztosan bezárja az ablakot? Minden változtatás elveszik.",
+			"onSaveDialogMessage": "Biztosan menteni szeretné a változtatásokat?"
+		},
+		"curlCommand": "Curl parancs"
+	},
+	"requestBody": {
+		"title": "Request Body",
+		"type": "Request Body típusa"
+	},
+	"requestBodyType": {
+		"noType": "Nincs",
+		"json": "JSON",
+		"file": "Fájl",
+		"text": "Szöveg",
+		"formData": "Form Data"
+	},
+	"pdf": {
+		"title": "API Dokumentáció",
+		"tableOfContents": "Tartalomjegyzék",
+		"pageNumber": "{{ page }} .oldal",
+		"description": "{{ article }} Leírás",
+		"permission": "{{ article }} Jogosultság",
+		"noData": {
+			"noDescription": "Nem tartozik leírás a végponthoz.",
+			"noPermission": "Nem tartozik jogosultság a végponthoz."
+		},
+		"exampleRequest":"Példa request",
+		"exampleResponse":"Példa response",
+		"structRequest":"Request adatszerkezet",
+		"structResponse":"Response adatszerkezet",
+		"table":{
+			"name":"Név",
+			"type":"Típus",
+			"description":"Leírás",
+			"value": "Érték"
+
+		}
+	},
+	"locust":{
+		"dirty": "A felületen nem mentett módosítások találhatók!",
+		"projectGeneration": "Projekt generálás",
+		"name":"Név",
+		"url":"URL",
+		"type":"Típus",
+		"general": {
+			"headless":"Headless",
+			"host": "Host",
+			"userNumber":"Felhasználók száma",
+			"spawnRate": "Spawn rate",
+			"logLevel":"Log level",
+			"runTime": "Futási idő(perc)",
+			"seed":"Seed",
+			"locale":"Locale"
+		},
+		"modul": {
+			"generated": "Generált kód",
+			"add":"Modul hozzáadása",
+			"moduls": "Modulok",
+			"deleteTitle": "Modul törlése",
+			"deleteMessage":"Ön egy modul törlésére készül! Biztosan törli a(z) {{ modul }} modult?",
+			"details": {
+				"modulName":"Modul név",
+				"selectEndpoint":"Végpontok kiválasztása",
+				"weight":"Súly",
+				"authType": "Authorizáció típus",
+				"deleteTitle": "Végpont törlése",
+				"deleteMessage":"Ön egy végpont törlésére készül! Biztosan törli a(z) {{ endpoint }} végpontot?"
+			},
+			"dataStructure": {
+				"title": "Request Body",
+				"valueType":"Érték típus",
+				"value":"Érték",
+				"length":"Hossz",
+				"deleteTitle": "Request body struktúra törlése",
+				"deleteMessage":"Ön egy request body struktúra törlésére készül! Biztosan törli a(z) {{ requestbody }} request body struktúrat?"
+			},
+			"responseHandler": {
+				"title": "Response kezelés",
+				"equality":"Egyezés",
+				"statusCode":"Státusz kód",
+				"log":"Log",
+				"deleteTitle": "Response kezelés törlése",
+				"deleteMessage":"Ön egy response kezelés törlésére készül! Biztosan törli a response kezelést?"
+			}
+
+		},
+		"auth": {
+			"deleteTitle": "Authorizáció törlése",
+			"deleteMessage":"Ön egy authorizáció törlésére készül! Biztosan törli a(z) {{ auth }} authorizációt?",
+			"select": "Authorizáció",
+			"oath":{
+				"clientID":"Client ID",
+				"username":"Felhasználónév",
+				"password":"Jelszó",
+				"grantType":"Grant Type",
+				"responseType":"Response Type"
+			},
+			"bearer":{
+				"token":"Token"
+			},
+			"api":{
+				"key":"Kulcs",
+				"value":"Érték"
+			}
+		},
+		"file": {
+			"new":"Új fájl"
+		},
+		"dictionaries": {
+			"title":"Szótárak",
+			"deleteTitle": "Szótár törlése",
+			"deleteMessage":"Ön egy szótár törlésére készül! Biztosan törli a(z) {{ dictionary }} szótárat?",
+			"word": {
+				"word": "Szó",
+				"deleteTitle": "Szó törlése",
+				"deleteMessage":"Ön egy szó törlésére készül! Biztosan törli a(z) {{ word }} szót?",
+				"newWord": "Új szó"
+			}
+		}
+	},
+	"generator": {
+		"title": "Adatgenerálás",
+		"seed": "Seed",
+		"options": {
+			"min_chars": "Minimum karakter",
+			"max_chars": "Maximum karakter",
+			"min_value": "Minimum",
+			"max_value": "Maximum",
+			"pattern": "Minta",
+			"end_datetime":"Végső dátum",
+			"domain": "Domain",
+			"truth_probability":"Igaz valószínűsége",
+			"length": "Hossz",
+			"special_chars":"Speciális karakterek",
+			"digits":"Számok",
+			"upper_case":"Nagybetű",
+			"lower_case":"Kisbetű",
+			"left_digits":"Bal oldali számok hossza",
+			"right_digits":"Jobb oldali számok hossza",
+			"nb_words":"Szavak száma",
+			"extension":"Kiterjesztés",
+			"width": "Szélesség",
+			"height": "Magasság"
+		},
+		"information": {
+			"general": "Általános",
+			"column": {
+				"name": "Név",
+				"description": "Leírás",
+				"required": "Kötelező",
+				"default": "Default"
+			},
+			"example": "Példa generálási érték:",
+			"syntax": "Szintaxis:"
+		}
+	}
+
+}

@@ -1,0 +1,13 @@
+<div class="container" [formGroup]="endpointForm">
+	<h4>{{ 'locust.auth.select' | translate }}</h4>
+	<dropdown-list
+		class = "wide"
+		[searchable]="true"
+		#authType
+		formControlName="authType"
+		[items]="generatorForm.value.auth!"
+		[label]="'locust.modul.details.authType' | translate"
+		[displayKey]="'name'"
+		[valueKey]="'name'"
+	></dropdown-list>
+</div>

@@ -1,0 +1,3 @@
+<div class="notification-list-container" [@slipInOutHolder]="service.notifications.length">
+	<notification *ngFor="let notification of service.notifications" [notification]="notification" [@slipInOut]></notification>
+</div>

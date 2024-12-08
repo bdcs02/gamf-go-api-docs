@@ -1,0 +1,22 @@
+.text-area {
+	max-height: 100%;
+	padding-right: 0.25rem;
+}
+
+.datasheet-base {
+	height: 100%;
+	grid-template-areas:
+		'title copy'
+		'value value';
+}
+
+.datasheet-value {
+	align-items: flex-start;
+	min-height: 0;
+	padding: 0.5rem 0 0.35rem 1rem;
+	overflow-y: auto;
+}
+
+.datasheet-copy {
+	margin-top: 10px;
+}

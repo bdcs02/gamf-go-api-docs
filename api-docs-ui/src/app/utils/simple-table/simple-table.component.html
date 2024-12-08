@@ -1,0 +1,91 @@
+<h3>{{ tableName }}</h3>
+<div class="simple-table">
+	<mat-form-field class="filter" appearance="outline">
+		<mat-label>{{ 'table.filter' | translate }}</mat-label>
+		<input matInput (keyup)="applyFilter($event)" #input />
+	</mat-form-field>
+	<mat-table [dataSource]="dataSource" matSort (matSortChange)="sort($event)">
+		<ng-container *ngFor="let column of config.columns">
+			<ng-container [ngSwitch]="column.type">
+				<ng-container *ngSwitchCase="'icon'" matColumnDef="{{ column.key }}">
+					<ng-container *ngIf="column.sortable === undefined || column.sortable === true; then sortable; else notSortable" />
+					<ng-template #sortable>
+						<mat-header-cell *matHeaderCellDef mat-sort-header> {{ column.translateKey | translate }} </mat-header-cell>
+					</ng-template>
+					<ng-template #notSortable>
+						<mat-header-cell *matHeaderCellDef> {{ column.translateKey | translate }} </mat-header-cell>
+					</ng-template>
+
+					<mat-cell *matCellDef="let row" [attr.data-label]="column.translateKey | translate">
+						<mat-icon [matTooltip]="column.tooltip ? (column.tooltip(row) | translate) : null" [matTooltipShowDelay]="500">{{
+							column?.icon(row[column.key])
+						}}</mat-icon>
+					</mat-cell>
+				</ng-container>
+				<ng-container *ngSwitchDefault matColumnDef="{{ column.key }}">
+					<ng-container *ngIf="column.sortable === undefined || column.sortable === true; then sortable; else notSortable" />
+					<ng-template #sortable>
+						<mat-header-cell *matHeaderCellDef mat-sort-header> {{ column.translateKey | translate }} </mat-header-cell>
+					</ng-template>
+					<ng-template #notSortable>
+						<mat-header-cell *matHeaderCellDef> {{ column.translateKey | translate }} </mat-header-cell>
+					</ng-template>
+					<mat-cell *matCellDef="let row" [attr.data-label]="column.translateKey | translate">
+						<span class="cell-value" [matTooltip]="getTooltipContent(row[column.key], column)" [matTooltipShowDelay]="500">
+							{{ row[column.key] | cellData: column }}
+						</span>
+					</mat-cell>
+				</ng-container>
+			</ng-container>
+		</ng-container>
+		<ng-container matColumnDef="actions" *ngIf="config.buttonConfig">
+			<mat-header-cell *matHeaderCellDef [class.action-menu-column]="config.buttonConfig.menu">{{
+				config.buttonConfig.titleTranslateKey! | translate
+			}}</mat-header-cell>
+			<mat-cell
+				*matCellDef="let row"
+				class="actions"
+				[class.action-menu-column]="config.buttonConfig.menu"
+				[attr.data-label]="config.buttonConfig.titleTranslateKey ?? 'table.actions' | translate"
+			>
+				<ng-container *ngIf="!config.buttonConfig.menu">
+					<ng-container *ngFor="let button of config.buttonConfig.buttons">
+						<button
+							mat-icon-button
+							*ngIf="!button.hidden || (button?.hidden && !button.hidden(row))"
+							(click)="button.onClick(row)"
+							[matTooltip]="button.translateKey | translate"
+							[matTooltipShowDelay]="500"
+							id="row-actions"
+						>
+							<mat-icon>{{ button.icon }}</mat-icon>
+						</button>
+					</ng-container>
+				</ng-container>
+				<ng-container *ngIf="config.buttonConfig.menu">
+					<button mat-icon-button [matMenuTriggerFor]="menu" [matTooltip]="'table.actions' | translate" id="row-actions">
+						<mat-icon>more_vert</mat-icon>
+					</button>
+					<mat-menu #menu="matMenu">
+						<ng-container *ngFor="let button of config.buttonConfig.buttons">
+							<button mat-menu-item *ngIf="!button.hidden || (button?.hidden && !button.hidden(row))" (click)="button.onClick(row)">
+								<mat-icon>{{ button.icon }}</mat-icon>
+								<span>{{ button.translateKey | translate }}</span>
+							</button>
+						</ng-container>
+					</mat-menu>
+				</ng-container>
+			</mat-cell>
+		</ng-container>
+		<mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+		<mat-row
+			*matRowDef="let row; columns: displayedColumns"
+			class="on-primary-background-color-on-hover"
+			[class.on-primary-background]="row.highlight"
+		></mat-row>
+		<tr class="mat-row" *matNoDataRow>
+			<td class="mat-cell" colspan="4">{{ 'table.tableDataNotFound' | translate }}</td>
+		</tr>
+	</mat-table>
+	<mat-paginator #paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+</div>

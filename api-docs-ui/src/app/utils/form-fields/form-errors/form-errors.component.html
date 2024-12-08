@@ -1,0 +1,27 @@
+<ng-container *ngIf="control.hasError('required')">
+	{{ 'common.errors.required' | translate }}
+</ng-container>
+<ng-container *ngIf="control.hasError('minlength')">
+	{{ 'common.errors.minLength' | translate: { minlength: control.errors?.minlength.requiredLength } }}
+</ng-container>
+<ng-container *ngIf="control.hasError('maxlength')">
+	{{ 'common.errors.maxLength' | translate: { maxlength: control.errors?.maxlength.requiredLength } }}
+</ng-container>
+<ng-container *ngIf="control.hasError('min')">
+	{{ 'common.errors.min' | translate: { min: control.errors?.min.min } }}
+</ng-container>
+<ng-container *ngIf="control.hasError('max')">
+	{{ 'common.errors.max' | translate: { max: control.errors?.max.max } }}
+</ng-container>
+<ng-container *ngIf="control.hasError('noWhitespaceOnly')">
+	{{ 'common.errors.noWhitespaceOnly' | translate }}
+</ng-container>
+<ng-container *ngIf="control.hasError('phoneNumber')">
+	{{ 'common.errors.phoneNumber' | translate }}
+</ng-container>
+<ng-container *ngIf="control.hasError('invalidEmail')">
+	{{ 'common.errors.emailAddress' | translate }}
+</ng-container>
+<ng-container *ngIf="control.hasError('invalidPassword')">
+	{{ control.getError('invalidPassword') }}
+</ng-container>

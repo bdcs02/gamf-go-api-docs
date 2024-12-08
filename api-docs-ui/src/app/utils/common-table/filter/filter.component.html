@@ -1,0 +1,73 @@
+<div>
+	<form class="inputs">
+		<mat-form-field appearance="outline">
+			<mat-label>{{ 'table.selectFilter' | translate }}</mat-label>
+			<mat-select id="filter-select" [(value)]="selected" (selectionChange)="selectionChange()">
+				<mat-option *ngFor="let column of filterableColumns" [value]="column">{{ column.translateKey | translate }}</mat-option>
+			</mat-select>
+		</mat-form-field>
+
+		<ng-container *ngIf="selected" [ngSwitch]="selected.filter">
+			<mat-form-field *ngSwitchCase="'string'" id="filter-text" class="form-field value-filter" appearance="outline">
+				<mat-label>{{ 'table.filterValue' | translate }}</mat-label>
+				<input [maxlength]="maxFilterLength" matInput type="text" [(ngModel)]="value" [ngModelOptions]="{ standalone: true }" />
+			</mat-form-field>
+
+			<mat-form-field *ngSwitchCase="'number'" id="filter-number" class="form-field value-filter" appearance="outline">
+				<mat-label>{{ 'table.filterValue' | translate }}</mat-label>
+				<input maxlength="maxFilterLength" matInput type="number" [(ngModel)]="value" [ngModelOptions]="{ standalone: true }" />
+			</mat-form-field>
+
+			<ng-container *ngSwitchCase="'date'">
+				<date-filter (dateChange)="dateChange($event)" class="date-filter"></date-filter>
+			</ng-container>
+
+			<ng-container *ngSwitchCase="'autocomplete'">
+				<autocomplete-filter
+					class="value-filter"
+					[options]="selected.autocompleteValues"
+					[label]="'common.search' | translate"
+					(selected)="autocompleteSelected($event)"
+				></autocomplete-filter>
+			</ng-container>
+
+			<ng-container *ngSwitchCase="'boolean'">
+				<mat-slide-toggle class="value-filter" [(ngModel)]="value" [ngModelOptions]="{ standalone: true }"></mat-slide-toggle>
+			</ng-container>
+
+			<ng-container *ngSwitchCase="'enum'">
+				<mat-form-field appearance="outline" class="value-filter">
+					<mat-label>{{ 'table.selectFilterValue' | translate }}</mat-label>
+					<mat-select [(ngModel)]="value" [ngModelOptions]="{ standalone: true }" disableOptionCentering id="filter-select-value">
+						<mat-option *ngFor="let item of selected.filterValues" [value]="item.value">
+							{{ item.translateKey | translate }}
+						</mat-option>
+					</mat-select>
+				</mat-form-field>
+			</ng-container>
+
+			<span *ngSwitchDefault></span>
+		</ng-container>
+
+		<button mat-raised-button id="filter-button" class="filter-button" color="accent" (click)="filter()" type="submit" [disabled]="loading">
+			{{ 'table.filter' | translate }}
+		</button>
+
+		<div class="aligned-right">
+			<ng-content></ng-content>
+		</div>
+	</form>
+
+	<mat-chip-listbox #chipList>
+		<mat-chip class="accent-mat-chip" *ngFor="let filter of filters; let i = index" (removed)="remove(filter)">
+			<span class="chip-translate-key">{{ filter.column.translateKey | translate }}</span>
+			<span class="chip-separator">: </span>
+			<span class="chip-value">
+				<strong>{{ filter.displayValue }}</strong>
+			</span>
+			<button matChipRemove id="remove-filter-chip-{{ i }}">
+				<mat-icon>close</mat-icon>
+			</button>
+		</mat-chip>
+	</mat-chip-listbox>
+</div>

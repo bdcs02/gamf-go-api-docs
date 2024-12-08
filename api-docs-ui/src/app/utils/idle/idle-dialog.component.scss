@@ -1,0 +1,15 @@
+.mat-dialog-container {
+	padding: 0px !important;
+}
+
+.idle-dialog {
+	padding: 1rem;
+	width: min(80vw, 24rem);
+}
+
+.mat-progress-bar {
+	.mat-progress-bar-fill,
+	.mat-progress-bar-buffer {
+		transition: transform 1000ms linear !important;
+	}
+}

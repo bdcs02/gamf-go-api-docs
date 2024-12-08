@@ -1,0 +1,113 @@
+$active-nav-item-light: #ececec;
+$active-nav-item-after: #358438;
+
+.example-holder {
+	display: flex;
+	width: 100%;
+	justify-content: space-between;
+}
+
+.example {
+	width: 50%;
+}
+
+.tab {
+	height: 100%;
+}
+
+.url-input {
+	width: 100%;
+}
+
+:host ::ng-deep .mat-mdc-tab-body-content {
+	height: 65vh;
+}
+
+.example-container {
+	height: 100%;
+}
+
+.title-wrapper {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding-left: 1rem;
+	margin-bottom: 1rem;
+	margin-top: 1rem;
+}
+
+:host ::ng-deep .method-chip {
+	margin: unset !important;
+	margin-right: 0.5rem !important;
+}
+
+.path-wrapper {
+	padding-left: 1rem;
+	padding-right: 1rem;
+	margin-bottom: 1rem;
+}
+
+.form-wrapper {
+	padding: 1rem;
+}
+
+.send-request-button {
+	width: 100%;
+}
+
+.nav-list > * {
+	width: 100%;
+}
+
+.sidenav {
+	width: 20rem;
+}
+
+mat-drawer-content {
+	padding: 1rem;
+}
+
+.menu-button {
+	width: 100%;
+	border-radius: 0;
+}
+
+.nav-list button {
+	justify-content: flex-start;
+}
+
+.nav-list {
+	height: 65% ;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: center;
+
+	.mdc-list-item {
+		padding-left: 0px;
+		padding-right: 0px;
+	}
+}
+
+.info-items button {
+	float: right;
+}
+
+
+.active-nav-item::after {
+	content: '';
+	position: absolute;
+	width: 5px;
+	right: 0;
+	height: 100%;
+	z-index: 5;
+	background-color: $active-nav-item-after;
+}
+
+.active-nav-item {
+	background-color: $active-nav-item-light;
+}
+
+input[type='file'] {
+	display: none;
+}

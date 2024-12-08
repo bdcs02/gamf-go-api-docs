@@ -1,0 +1,18 @@
+<div [formGroup]="formGroup">
+	<dropdown-list
+	class="element"
+	[label]="'keyValueEditor.formData.placement' | translate"
+	formControlName="position"
+	[items]="['Header','Query param']"
+	></dropdown-list>
+	<div class="group">
+		<mat-form-field appearance="outline" class="inputField element">
+			<mat-label>{{ 'locust.auth.api.key' | translate }}</mat-label>
+			<input matInput formControlName="key" id="key" />
+		</mat-form-field>
+		<mat-form-field appearance="outline" class="inputField element">
+			<mat-label>{{ 'locust.auth.api.value' | translate }}</mat-label>
+			<input matInput formControlName="value" id="value" />
+		</mat-form-field>
+	</div>
+</div>

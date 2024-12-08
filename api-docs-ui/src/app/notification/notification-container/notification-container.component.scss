@@ -1,0 +1,19 @@
+.notification-list-container {
+	position: absolute;
+	bottom: 0.7rem;
+	right: 0;
+	z-index: 1000;
+	max-height: calc(100vh - 3.25rem);
+	overflow: hidden;
+	display: flex;
+	flex-direction: column-reverse;
+}
+
+@media screen and (max-width: 960px) {
+	div.notification-list-container {
+		top: unset;
+		bottom: 1rem;
+		margin: auto;
+		flex-direction: column;
+	}
+}

@@ -1,0 +1,21 @@
+.dg-description {
+	height: 100%;
+	text-align: justify;
+	max-width: 40rem;
+	overflow-y: scroll;
+	padding: 0.5rem;
+	margin-left: 1rem;
+	margin-right: 1rem;
+
+	#syntax:hover {
+		cursor: pointer;
+	}
+
+	.mat-elevation-z8 {
+		margin-top: 1rem;
+	}
+
+	.dg-tables table {
+		padding-top: 1rem;
+	}
+}

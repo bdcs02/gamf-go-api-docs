@@ -1,0 +1,34 @@
+<div class="group">
+	<h4>{{ 'locust.modul.responseHandler.title' | translate }}</h4>
+	<button prevendDoubleClick (click)="addResponseHandler()" >
+		<mat-icon>add</mat-icon>
+	</button>
+</div>
+@for (responseHandler of formArray.controls; track responseHandler; let id = $index)
+{
+	<div class="response" [formGroup]="responseHandler">
+		<button prevendDoubleClick id="delete" (click)="deleteResponseHandler(id)">
+			<mat-icon>delete</mat-icon>
+		</button>
+		<div class="group">
+
+			<dropdown-list
+				class="element"
+				[searchable]="true"
+				formControlName="equality"
+				[items]="equality"
+				[label]="'locust.modul.responseHandler.equality' | translate"
+			></dropdown-list>
+
+			<dropdown-list
+				class="element"
+				[searchable]="true"
+				formControlName="statusCode"
+				[items]="statusCodes"
+				[label]="'locust.modul.responseHandler.statusCode' | translate"
+			></dropdown-list>
+		</div>
+
+		<mat-checkbox class="log" formControlName="log">{{ 'locust.modul.responseHandler.log' | translate }}</mat-checkbox>
+	</div>
+}

@@ -1,0 +1,26 @@
+<div class="tab-container" [formGroup]="formGroup">
+	<h3>{{ 'endpoint.authorization.title' | translate }}</h3>
+
+	<div class="authorization-selector">
+		<dropdown-list
+			#authorizationTypeList
+			formControlName="type"
+			[items]="authorizationTypes"
+			(selectionChange)="selectAuthorizationType($event)"
+			[label]="'endpoint.authorization.type' | translate"
+		></dropdown-list>
+	</div>
+
+	@switch (formGroup.controls.type.value) {
+		@case ('Nincs') {}
+		@case ('Bearer Token') {
+			<bearer-token-authorization [formGroup]="formGroup"></bearer-token-authorization>
+		}
+		@case ('API Key') {
+			<api-key-authorization [formGroup]="formGroup"></api-key-authorization>
+		}
+		@case ('Keycloak') {
+			<keycloak-authorization></keycloak-authorization>
+		}
+	}
+</div>

@@ -1,0 +1,142 @@
+.notification-container {
+	display: flex;
+	flex-direction: column;
+	width: 17rem;
+	height: 2.5rem;
+	color: white;
+	border-radius: 0.5rem 0.5rem;
+	margin-block: 0.3rem;
+	margin-inline: 0.75rem;
+	padding: 0 0.5rem 0.5rem 0.5rem;
+	position: relative;
+	transform-origin: top;
+	transition: transform 150ms ease-in-out;
+	cursor: pointer;
+	user-select: none;
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+
+	.top-row {
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		height: 2.5rem;
+
+		.icon {
+			width: 2rem;
+			display: flex;
+			align-items: center;
+			height: 3rem;
+		}
+
+		.message {
+			position: relative;
+			flex-basis: 100%;
+			padding-inline: 0.5rem;
+		}
+	}
+}
+
+.notification-container:hover {
+	transform: translateX(-5px);
+}
+
+.notification-container.expandable {
+	height: min-content;
+
+	.top-row {
+		height: 2.5rem;
+	}
+
+	.details {
+		max-height: 8rem;
+	}
+}
+
+.delete-button {
+	position: absolute;
+	top: 0;
+	right: 0;
+	color: white;
+	scale: 0.75;
+	z-index: 1005;
+}
+
+mat-progress-bar {
+	position: absolute;
+	bottom: 0px;
+	left: 0px;
+	width: calc(17rem - 4px);
+	border-radius: 0rem 0rem 0.5rem 0.5rem;
+	height: 5px;
+}
+
+:host ::ng-deep {
+	.mdc-linear-progress__bar {
+		animation: progress-bar-animation 8000ms linear !important;
+	}
+
+	.notification-success {
+		background-color: rgb(62, 181, 110);
+		border-left: 4px solid darken(rgb(62, 181, 110), 7%);
+
+		.mdc-linear-progress__buffer-bar {
+			background-color: lighten(rgb(62, 181, 110), 20%);
+		}
+
+		.mdc-linear-progress__bar-inner {
+			border-color: rgb(62, 181, 110);
+		}
+	}
+
+	.notification-info {
+		background-color: rgb(103, 164, 191);
+		border-left: 4px solid darken(rgb(103, 164, 191), 7%);
+
+		.mdc-linear-progress__buffer-bar {
+			background-color: lighten(rgb(103, 164, 191), 15%);
+		}
+		.mdc-linear-progress__bar-inner {
+			border-color: rgb(103, 164, 191);
+		}
+	}
+
+	.notification-warn {
+		background-color: rgb(231, 194, 82);
+		border-left: 4px solid darken(rgb(231, 194, 82), 7%);
+
+		.mdc-linear-progress__buffer-bar {
+			background-color: lighten(rgb(231, 194, 82), 15%);
+		}
+		.mdc-linear-progress__bar-inner {
+			border-color: rgb(231, 194, 82);
+		}
+	}
+
+	.notification-error {
+		background-color: rgb(199, 68, 68);
+		border-left: 4px solid darken(rgb(199, 68, 68), 7%);
+
+		.mdc-linear-progress__buffer-bar {
+			background-color: lighten(rgb(199, 68, 68), 20%);
+		}
+		.mdc-linear-progress__bar-inner {
+			border-color: rgb(199, 68, 68);
+		}
+	}
+}
+
+@keyframes progress-bar-animation {
+	0% {
+		transform: scaleX(0);
+	}
+	100% {
+		transform: scaleX(1);
+	}
+}
+
+@media screen and (min-width: 960px) {
+	.delete-button {
+		display: none;
+	}
+}

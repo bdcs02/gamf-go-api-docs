@@ -1,0 +1,64 @@
+@if (keyvaluePairs) {
+	<div class="center">
+		<button type="button" mat-raised-button id="addRow" color="primary" (click)="addRow()">
+			{{ 'keyValueEditor.' + editorType + '.new' | translate }}
+		</button>
+
+		<div [formGroup]="formGroup">
+			<div [formArrayName]="formArrayName">
+				<div>
+					@for (keyPairForm of keyvaluePairs.controls; track keyPairForm; let i = $index) {
+						<div id="inputFields" [formGroupName]="i">
+							<dropdown-list
+								id="formdata-dropdown-{{ i }}"
+								#requestBodyTypeList
+								formControlName="formDataType"
+								[items]="formDataTypes"
+								[label]="'keyValueEditor.' + editorType + '.type' | translate"
+							></dropdown-list>
+							<mat-form-field appearance="outline" class="inputField">
+								<mat-label>{{ 'keyValueEditor.' + editorType + '.key' | translate }}</mat-label>
+								<input matInput formControlName="key" id="key-{{ i }}" />
+							</mat-form-field>
+							@switch (formGroup.controls.formFileData.value[i].formDataType) {
+								@case ('Fájl') {
+									<div class="inputField">
+										<div class="file-upload">
+											<input
+												type="file"
+												(change)="onFileSelected($event, i)"
+												formControlName="value"
+												id="selectedFile-{{ i }}"
+												style="display: none"
+											/>
+											<button class="file-button" id="file-upload-{{ i }}" (click)="openFileDialog(i)">
+												Fájl kiválasztása
+											</button>
+											<label class="file-label" for="file-upload-{{ i }}">{{ this.getFilename(i) }}</label>
+										</div>
+									</div>
+								}
+								@case ('Form Data') {
+									<mat-form-field appearance="outline" class="inputField">
+										<mat-label>{{ 'keyValueEditor.' + editorType + '.value' | translate }}</mat-label>
+										<input matInput formControlName="value" id="value-{{ i }}" />
+									</mat-form-field>
+								}
+							}
+							<button
+								mat-icon-button
+								preventDoubleClick
+								id="delete"
+								(click)="deleteRow(i)"
+								[matTooltip]="'common.delete' | translate"
+								[matTooltipShowDelay]="500"
+							>
+								<mat-icon>delete</mat-icon>
+							</button>
+						</div>
+					}
+				</div>
+			</div>
+		</div>
+	</div>
+}

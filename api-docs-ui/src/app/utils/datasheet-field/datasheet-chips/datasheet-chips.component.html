@@ -1,0 +1,30 @@
+<div class="datasheet-base on-primary-background">
+	<div class="datasheet-title text-padding primary-color">{{ label }}</div>
+	<div class="datasheet-value">
+		<mat-icon *ngIf="icon" class="datasheet-icon">{{ icon }}</mat-icon>
+		<div *ngIf="value">{{ 'datasheet.useValuesError' | translate }}</div>
+		<mat-chip-listbox class="datasheet-chips" [class.empty]="!values?.length">
+			<mat-chip
+				*ngFor="let value of values"
+				[id]="'chip-id-' + value.label"
+				(click)="value.click(value.id)"
+				[matTooltip]="value.label"
+				[matTooltipShowDelay]="500"
+				class="primary-mat-chip"
+			>
+				{{ value.label }}
+			</mat-chip>
+		</mat-chip-listbox>
+	</div>
+	<button
+		*ngIf="hasCopy"
+		class="datasheet-copy"
+		mat-icon-button
+		(click)="copyValue()"
+		[matTooltipShowDelay]="500"
+		[matTooltip]="'common.copyToClipBoard' | translate"
+	>
+		<mat-icon>content_copy</mat-icon>
+	</button>
+</div>
+<mat-divider></mat-divider>

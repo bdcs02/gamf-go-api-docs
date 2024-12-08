@@ -1,0 +1,20 @@
+<mat-form-field [appearance]="appearance">
+	<mat-label>{{ label }}</mat-label>
+	<input
+		[formControl]="formControl"
+		[id]="id || controlName + '-input'"
+		(change)="onInputChange()"
+		[attr.maxlength]="inputLimit ? inputLimit + '' : null"
+		type="text"
+		matInput
+		[readonly]="readOnly"
+	/>
+	<mat-icon *ngIf="icon" [ngClass]="{ error: formControl.errors && formControl.touched }" matSuffix>{{ icon }}</mat-icon>
+	<mat-icon *ngIf="readOnly && formControl.value" class="pointer" (click)="clearValue()" [matTooltip]="'common.delete' | translate" matSuffix
+		>delete</mat-icon
+	>
+	<mat-error>
+		<form-errors [control]="formControl"></form-errors>
+		<ng-content select="[errors]"></ng-content>
+	</mat-error>
+</mat-form-field>

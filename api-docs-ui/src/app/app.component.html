@@ -1,0 +1,15 @@
+<mat-toolbar class="header" color="primary">
+	<div class="main-title" [routerLink]="['']">
+		<!-- <img class="nav-logo" src="assets/images/octo_transparent_vector.svg" /></-->{{ 'common.title' | translate }}
+	</div>
+	<div class="nav-items">
+		<top-bar-nav [items]="nav.visibleNavItems"></top-bar-nav>
+	</div>
+</mat-toolbar>
+<div class="progress-bar">
+	<request-progress></request-progress>
+</div>
+<div class="router-outlet-container">
+	<router-outlet></router-outlet>
+</div>
+<notification-container></notification-container>

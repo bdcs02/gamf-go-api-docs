@@ -1,0 +1,17 @@
+<div class="copy-curl-container">
+	<h3>{{ 'data.curlCommand' | translate }}</h3>
+	<button
+		mat-icon-button
+		matSuffix
+		preventDoubleClick
+		id="copyKey"
+		(click)="copyKey(curlSnippet)"
+		[matTooltip]="'common.copyToClipBoard' | translate"
+		[matTooltipShowDelay]="500"
+	>
+		<mat-icon>content_copy</mat-icon>
+	</button>
+</div>
+<div class="curl-snippet-container">
+	<monaco-editor [content]="curlSnippet" [language]="'plaintext'"></monaco-editor>
+</div>

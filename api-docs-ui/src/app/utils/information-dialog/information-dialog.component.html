@@ -1,0 +1,49 @@
+<div class="dialog-frame">
+	<div class="frame-header-title dialog-header">
+		{{ data.titleTranslateKey | translate }}
+	</div>
+	<div class="frame-content">
+		<p class="information-item">{{ data.messageTranslateKey | translate: data.messageTokenValues }}</p>
+		<div *ngIf="hasContent" id="contact-list">
+			<mat-divider></mat-divider>
+			<div class="content">
+				<div *ngIf="data.informationList" class="information-list-container">
+					<div class="information-item" *ngFor="let info of data.informationList">
+						{{ info }}
+					</div>
+				</div>
+				<div *ngIf="data.informationMap">
+					<div class="information-list-container">
+						<ng-container *ngFor="let infoData of data.informationMap | keyvalue: asIsOrder">
+							<ng-container *ngIf="infoData.value.length !== 0">
+								<div class="info-title">{{ infoData.key }}</div>
+								<ul>
+									<li *ngFor="let info of infoData.value">{{ info }}</li>
+								</ul>
+							</ng-container>
+						</ng-container>
+					</div>
+				</div>
+				<button
+					class="copy"
+					mat-icon-button
+					[matTooltip]="'common.copyToClipBoard' | translate"
+					color="primary"
+					aria-label="Copy"
+					(click)="copyToClipBoard()"
+				>
+					<mat-icon>content_copy</mat-icon>
+				</button>
+			</div>
+			<mat-divider></mat-divider>
+		</div>
+		<div class="footer-buttons">
+			<button *ngIf="data.confirm" preventDoubleClickOffline id="cancel" mat-button color="primary" (click)="cancel()">
+				{{ 'common.cancel' | translate }}
+			</button>
+			<button preventDoubleClick id="ok" mat-raised-button color="primary" (click)="ok()">
+				{{ data.buttonTranslateKey || 'common.ok' | translate }}
+			</button>
+		</div>
+	</div>
+</div>

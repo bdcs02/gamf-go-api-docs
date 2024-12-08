@@ -1,0 +1,34 @@
+@use '@angular/material' as mat;
+
+.simple-table {
+	position: relative;
+	width: 100%;
+}
+
+.mat-mdc-table {
+	width: 10rem;
+}
+
+.mat-mdc-row {
+	min-height: 49px;
+}
+
+:host ::ng-deep .mat-column-actions {
+	flex: 0 0 10%;
+}
+
+.cell-value {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-line-clamp: 3;
+	-webkit-box-orient: vertical;
+}
+
+mat-row {
+	transition: background-color 125ms ease-in-out;
+}
+
+.filter {
+	width: 20rem;
+}

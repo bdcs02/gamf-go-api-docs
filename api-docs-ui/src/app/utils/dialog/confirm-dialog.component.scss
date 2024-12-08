@@ -1,0 +1,28 @@
+.dialog {
+	max-width: 40rem;
+	display: flex;
+	gap: 1rem;
+	flex-direction: column;
+	padding: 8px;
+}
+
+.dialog-header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	position: relative;
+	padding: 1rem;
+	min-height: 3rem;
+
+	&::before {
+		display: none;
+	}
+}
+
+.dialog-description {
+	padding-inline: 1rem;
+}
+
+.dialog-action {
+	align-self: flex-end;
+}

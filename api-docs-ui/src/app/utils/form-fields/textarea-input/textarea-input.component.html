@@ -1,0 +1,13 @@
+<mat-form-field [appearance]="appearance" class="textarea-input-component">
+	<mat-label>
+		<span>{{ label }}<span *ngIf="required" class="mat-form-field-required-marker">*</span></span>
+		<mat-icon *ngIf="icon" [ngClass]="{ error: formControl.touched && formControl.errors }" class="textarea-mat-icon">
+			{{ icon }}
+		</mat-icon>
+	</mat-label>
+	<textarea [attr.maxlength]="inputLimit ? inputLimit+'' : null" type="text" matInput [id]="controlName + '-input'" [formControl]="formControl" (change)="onInputChange()"></textarea>
+	<mat-error>
+		<form-errors [control]="formControl"></form-errors>
+		<ng-content select="[errors]"></ng-content>
+	</mat-error>
+</mat-form-field>

@@ -1,0 +1,4 @@
+export const TEXT_FIELD_MAX_LENGTH = 100;
+export const TEXT_AREA_MAX_LENGTH = 500;
+export const SHORT_TEXT_FIELD_MAX_LENGTH = 32;
+export const FILE_PATH_MAX_LENGTH = 2000;

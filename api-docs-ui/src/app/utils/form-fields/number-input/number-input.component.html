@@ -1,0 +1,9 @@
+<mat-form-field [appearance]="appearance">
+	<mat-label>{{ label }}</mat-label>
+	<input type="number" matInput [id]="controlName + '-input'" [formControl]="formControl" (change)="onInputChange()" [min]="min" [max]="max" />
+	<mat-icon *ngIf="icon" [ngClass]="{ error: formControl.errors && formControl.touched }" matSuffix>{{ icon }}</mat-icon>
+	<mat-error>
+		<form-errors [control]="formControl"></form-errors>
+		<ng-content select="[errors]"></ng-content>
+	</mat-error>
+</mat-form-field>

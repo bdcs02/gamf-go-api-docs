@@ -1,0 +1,15 @@
+.json-editor {
+	height: 20rem;
+}
+
+:host ::ng-deep .jsoneditor-poweredBy {
+	display: none;
+}
+
+:host ::ng-deep .jsoneditor-mode-code {
+	height: 25rem;
+}
+
+.body-selector {
+	width: 20rem;
+}
